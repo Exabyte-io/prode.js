@@ -1,16 +1,14 @@
-import { deepClone } from "/imports/utils/index";
-import { flattenObject } from "@exabyte-io/code.js/dist/utils";
+import { deepClone, flattenObject } from "@exabyte-io/code.js/dist/utils";
 
 import { Property } from "../../property";
 
 export class BandGapsProperty extends Property {
-
     get eigenvalues() {
-        return this.prop('eigenvalues');
+        return this.prop("eigenvalues");
     }
 
     get values() {
-        return this.prop('values');
+        return this.prop("values");
     }
 
     /**
@@ -19,17 +17,19 @@ export class BandGapsProperty extends Property {
      * @return {Array}
      */
     toRowValues() {
-        return [this.toJSONByType('direct'), this.toJSONByType('indirect')];
+        return [this.toJSONByType("direct"), this.toJSONByType("indirect")];
     }
 
     flattenProperties() {
-        const obj = this.prop('data');
-        return obj.values.map(x => {
-            return {
-                name: `${obj.name}:${x.type}`,
-                value: x.value
-            };
-        }).map(x => flattenObject(x));
+        const obj = this.prop("data");
+        return obj.values
+            .map((x) => {
+                return {
+                    name: `${obj.name}:${x.type}`,
+                    value: x.value,
+                };
+            })
+            .map((x) => flattenObject(x));
     }
 
     /**
@@ -40,12 +40,12 @@ export class BandGapsProperty extends Property {
     toJSONByType(type) {
         const ch = this.toJSON();
         const bandGapByType = deepClone(ch);
-        const directData = ch.data.values.find(x => x.type === type);
+        const directData = ch.data.values.find((x) => x.type === type);
         const name = `band_gaps:${type}`;
-        bandGapByType.data = Object.assign({}, directData, {name});
+        bandGapByType.data = { ...directData, name };
         return Object.assign(bandGapByType, {
             slug: name,
-            group: this.group
+            group: this.group,
         });
     }
 
@@ -56,17 +56,16 @@ export class BandGapsProperty extends Property {
      * @return {Object}
      */
     static normalizeSelectorByDataField(name, selector) {
-        const bgSelector = {name: 'band_gaps'};
+        const bgSelector = { name: "band_gaps" };
         // name is in 'band_gaps:direct' format
-        const type = name.split(':')[1]; // direct/indirect
+        const type = name.split(":")[1]; // direct/indirect
         bgSelector.values = {
             $elemMatch: {
-                type: type,
-                value: selector
-            }
+                type,
+                value: selector,
+            },
         };
 
         return bgSelector;
     }
 }
-
