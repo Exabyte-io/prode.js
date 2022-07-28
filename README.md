@@ -79,3 +79,14 @@ npm run lint:fix
 In which case, you may need to then add the linter edits to your staging, which in the example above, puts the
 file back to identical with the base branch, resulting in no staged changes whatsoever.
 
+ProDe
+=====
+
+The`ProDe` package is central to many other entities in the Mat3ra workflow
+ecosystem, where `ProDe` houses entity definitions for:
+
+- `Property` - the basic definition of a property
+  - properties can be of the following types:
+    - `scalar` `non_scalar` `tensor` `object`
+  - specific properties are implemented by subclassing `Property`
+
