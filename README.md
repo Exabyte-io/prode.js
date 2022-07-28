@@ -3,7 +3,7 @@
 
 # prode.js
 
-prode.js houses entity definitions for use in the Mat3ra platform.
+PROperty DEfinitions in JavaScript - prode.js - houses Property entity definitions for use in the Mat3ra platform.
 
 
 ### Installation
@@ -89,4 +89,5 @@ ecosystem, where `ProDe` houses entity definitions for:
   - properties can be of the following types:
     - `scalar` `non_scalar` `tensor` `object`
   - specific properties are implemented by subclassing `Property`
+  - more info at https://docs.mat3ra.com/properties/overview/
 
