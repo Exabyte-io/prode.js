@@ -119,4 +119,7 @@ export default {
         "type": PROPERTY_TYPES.non_scalar,
         "domain": PROPERTY_DOMAINS.workflow
     },
+    [PROPERTIES.pseudopotential]: {
+        "type": PROPERTY_TYPES.non_scalar,
+    },
 };
