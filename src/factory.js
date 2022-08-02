@@ -1,6 +1,5 @@
 import _ from "underscore";
 import lodash from "lodash";
-import { mix } from "mixwith";
 
 import { Property } from "./property"
 import { PROPERTY_CLASS_MAP, PROPERTY_BRANCH_MAP } from "./classmap";
@@ -20,16 +19,12 @@ export class PropertyFactory {
             lodash.get(config, 'data.name', '') || lodash.get(config, 'name', '');
 
         const propertyClass = this._propertyClassByName(name);
-        const precisionMixin = this._precisionMixinByMethodType(methodType);
+        const precisionFn = this._precisionFunctionByMethodType(methodType);
 
-        class mixed extends mix(propertyClass).with(precisionMixin) {
-            get cls() {
-                return propertyClass.name
-            }
-        }
+        // add precision function directly to avoid mixins
+        propertyClass.prototype.calculatePrecision = precisionFn;
 
-        // inline class creation
-        return new mixed(config);
+        return new propertyClass(config);
     }
 
     static _propertyClassByName(name) {
@@ -38,7 +33,7 @@ export class PropertyFactory {
     }
 
     // TODO: generalize the tree
-    static _precisionMixinByMethodType(methodType = 'DFTPseudopotential') {
+    static _precisionFunctionByMethodType(methodType = 'DFTPseudopotential') {
         return this.methodsTree[methodType] || function () {
         }; // return empty function (class) by default
     }
