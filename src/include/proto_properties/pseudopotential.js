@@ -86,7 +86,7 @@ export class Pseudopotential extends Property {
      */
     static sortPseudosByPattern(pseudos, pattern = "/gbrv/") {
         return pseudos.concat([]).sort((a, b) => {
-            return (1 ? a.path.includes(pattern) : 0) - (1 ? b.path.includes(pattern) : 0)
+            return (1 ? b.path.includes(pattern) : 0) - (1 ? a.path.includes(pattern) : 0)
         });
     }
 
