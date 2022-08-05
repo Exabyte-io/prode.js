@@ -14,6 +14,7 @@ import { ReactionEnergyProfileProperty } from "./include/non-scalar/reaction_ene
 import { Property } from "./property";
 import { TensorProperty } from "./include/primitive/tensor";
 import { ObjectProperty } from "./include/primitive/object";
+import { Pseudopotential } from "./include/proto_properties/pseudopotential";
 
 /**
  * @desc Used in property factory to map property names to property classes.
@@ -48,6 +49,8 @@ export const PROPERTY_CLASS_MAP = {
     [PROPERTIES.potential_profile]: PotentialProfileProperty,
     [PROPERTIES.charge_density_profile]: ChargeDensityProfileProperty,
     [PROPERTIES.jupyter_nb_endpoint]: null,
+    [PROPERTIES.pseudopotential]: Pseudopotential,
+    [PROPERTIES.boundary_conditions]: null,
 };
 
 export const PROPERTY_BRANCH_MAP = {

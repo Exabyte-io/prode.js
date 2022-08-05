@@ -122,4 +122,7 @@ export default {
     [PROPERTIES.pseudopotential]: {
         "type": PROPERTY_TYPES.non_scalar,
     },
+    [PROPERTIES.boundary_conditions]: {
+        "type": PROPERTY_TYPES.non_scalar,
+    },
 };
