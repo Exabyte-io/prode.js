@@ -29,6 +29,14 @@ export class Pseudopotential extends Property {
         return this.prop('exchangeCorrelation');
     }
 
+    get source() {
+        return this.prop('source');
+    }
+
+    get type() {
+        return this.prop('type');
+    }
+
     /**
      * @summary Attempts filtering raw data by search text, split by "," into multiple regular expressions,
      *           splitting to multiple regexps allows to control the order of filtered items
