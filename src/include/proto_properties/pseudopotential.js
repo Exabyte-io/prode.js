@@ -29,6 +29,14 @@ export class Pseudopotential extends Property {
         return this.prop('exchangeCorrelation');
     }
 
+    get source() {
+        return this.prop('source');
+    }
+
+    get type() {
+        return this.prop('type');
+    }
+
     /**
      * @summary Attempts filtering raw data by search text, split by "," into multiple regular expressions,
      *           splitting to multiple regexps allows to control the order of filtered items
@@ -86,7 +94,22 @@ export class Pseudopotential extends Property {
      */
     static sortPseudosByPattern(pseudos, pattern = "/gbrv/") {
         return pseudos.concat([]).sort((a, b) => {
-            return (1 ? a.path.includes(pattern) : 0) - (1 ? b.path.includes(pattern) : 0)
+            return (1 ? b.path.includes(pattern) : 0) - (1 ? a.path.includes(pattern) : 0)
+        });
+    }
+    
+    /**
+     * Prioritizes pseudos with 'default' and '5.2' (version) in path (VASP)
+     */
+    static sortByPathVASP(pseudos) {
+        return pseudos.concat([]).sort((a,b) => {
+            if (a.path.includes('default') && a.path.includes('5.2')) {
+                return -1;
+            }
+            if (b.path.includes('default') && b.path.includes('5.2')) {
+                return 1;
+            }
+            return 0;
         });
     }
 
