@@ -97,5 +97,20 @@ export class Pseudopotential extends Property {
             return (1 ? b.path.includes(pattern) : 0) - (1 ? a.path.includes(pattern) : 0)
         });
     }
+    
+    /**
+     * Prioritizes pseudos with 'default' and '5.2' (version) in path (VASP)
+     */
+    static sortByPathVASP(pseudos) {
+        return pseudos.concat([]).sort((a,b) => {
+            if (a.path.includes('default') && a.path.includes('5.2')) {
+                return -1;
+            }
+            if (b.path.includes('default') && b.path.includes('5.2')) {
+                return 1;
+            }
+            return 0;
+        });
+    }
 
 }
