@@ -47,7 +47,22 @@ const PSEUDO_CONFIGS = [
         source: "vasp",
         type: "paw",
         version: "5.2"
-    }
+    },
+    {
+        element: "Pb",
+        hash: "c464c3afe3f71cdb0fa2da3dd0badea4",
+        filename: "pb_pz_gbrv_1.0.upf",
+        path: "/export/share/pseudo/pb/lda/pz/gbrv/1.0/us/pb_pz_gbrv_1.0.upf",
+        apps: ["espresso"],
+        exchangeCorrelation: {
+            functional: "pz",
+            approximation: "lda"
+        },
+        name: "pseudopotential",
+        source: "gbrv",
+        type: "us",
+        version: "1.0"
+    },
 ];
 
 describe("Pseudopotential", () => {
@@ -92,7 +107,14 @@ describe("Pseudopotential", () => {
 
 describe("Pseudopotentials", () => {
     const pseudos = PSEUDO_CONFIGS.map((p) => new Pseudopotential(p));
-
+    const filterObj = {
+        exchangeCorrelation: {
+            functional: "pbe",
+            approximation: "gga"
+        },
+        searchText: "gbrv",
+    };
+    
 
     it("are sorted by default pattern: '/gbrv/'", () => {
         const sortedPseudos = Pseudopotential.sortPseudosByPattern(pseudos);
@@ -101,5 +123,13 @@ describe("Pseudopotentials", () => {
     it("are sorted by default path for VASP version 5.2", () => {
         const sortedPseudos = Pseudopotential.sortByPathVASP(pseudos);
         expect(sortedPseudos[0].source).to.equal("vasp");
+    });
+    it("are filtered by multiple filters at once", () => {
+        const {functional: func, approximation: appr} = filterObj.exchangeCorrelation;
+        const filtered = Pseudopotential.applyPseudoFilters(pseudos, filterObj);
+        // may need to be adjusted when new pseudos array is modified!
+        expect(filtered).to.have.lengthOf(1);
+        expect(filtered[0].exchangeCorrelation).to.have.property("functional", func);
+        expect(filtered[0].exchangeCorrelation).to.have.property("approximation", appr);
     });
 });

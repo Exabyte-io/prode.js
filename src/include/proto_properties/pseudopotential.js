@@ -43,11 +43,12 @@ export class Pseudopotential extends Property {
      *           if raw data is not empty but filtered data is, returns first element of raw data (assumed to be default)
      * @param {Array} rawData
      * @param {String} searchText
+     * @note Filters by path!
      */
-    static safelyFilterRawDataBySearchText(rawData, searchText = '') {
+    static safelyFilterRawDataBySearchText(rawData, searchText = '', separator=",") {
         if (!searchText) return rawData;
         const filteredData = [];
-        searchText.split(",").forEach(txt => {
+        searchText.split(separator).forEach(txt => {
             const text = txt.trim(); // remove whitespace and do nothing if empty string
             if (!text) return;
             try {
@@ -86,6 +87,31 @@ export class Pseudopotential extends Property {
     static filterRawDataByPath(rawData, path = '') {
         const regexp = new RegExp(path);
         return rawData.filter(el => el.path.match(regexp));
+    }
+    
+    /** Apply several filters at once.
+     * @example
+     * // filter object
+     * {
+     *     exchangeCorrelation: {
+     *         approximation: "gga",
+     *         functional: "pbe"
+     *     },
+     *     searchText: "gbrv"
+     * }
+     */
+    static applyPseudoFilters(pseudos, pseudoFilter) {
+        let filteredPseudos = [].concat(pseudos);
+        for (const [fKey, fValue] of Object.entries(pseudoFilter)) {
+            if (fKey === "exchangeCorrelation" && fValue) {
+                filteredPseudos = this.filterRawDataByExchangeCorrelation(filteredPseudos, fValue);
+            }
+            else if (fKey === "searchText" && fValue) {
+                filteredPseudos = this.safelyFilterRawDataBySearchText(filteredPseudos, fValue);
+            }
+            // TODO: add more filter options
+        }
+        return filteredPseudos;
     }
 
     /**
