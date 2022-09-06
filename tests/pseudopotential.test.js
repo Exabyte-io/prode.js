@@ -129,7 +129,7 @@ describe("Pseudopotentials", () => {
         const sortedPseudos = Pseudopotential.sortByPathVASP(pseudos);
         expect(sortedPseudos[0].source).to.equal("vasp");
     });
-    it("are filtered by XC and searchText at once", () => {
+    it("are filtered by exchangeCorrelation and searchText at once", () => {
         const { functional: func, approximation: appr } = filterObj.exchangeCorrelation;
         const filtered = Pseudopotential.applyPseudoFilters(pseudos, filterObj);
         // may need to be adjusted when new pseudos array is modified!
