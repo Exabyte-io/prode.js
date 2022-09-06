@@ -54,6 +54,7 @@ export class Property extends NamedInMemoryEntity {
         return this.prop('group');
     }
 
+    // same as element of PROPERTIES
     get slug() {
         return this.prop('slug');
     }
