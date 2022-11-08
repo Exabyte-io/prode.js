@@ -1,6 +1,6 @@
 export const EXTERNAL_SOURCES = {
-    materials_project: 'MaterialsProject',
-    icsd: 'ICSD'
+    materials_project: "MaterialsProject",
+    icsd: "ICSD",
 };
 
 export const PROPERTY_TYPES = {
@@ -48,4 +48,6 @@ export const PROPERTIES = {
     potential_profile: "potential_profile",
     charge_density_profile: "charge_density_profile",
     jupyter_nb_endpoint: "jupyter_notebook_endpoint",
-}
+    averaged_potential_profile: "averaged_potential_profile",
+    valence_band_offset: "valence_band_offset",
+};
