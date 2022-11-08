@@ -53,7 +53,6 @@ export class AveragedPotentialProfileConfig extends TwoDimensionalHighChartConfi
     }
 
     get overrideConfig() {
-        const { xDataArray } = this;
         return {
             ...super.overrideConfig,
             legend: {
@@ -61,10 +60,6 @@ export class AveragedPotentialProfileConfig extends TwoDimensionalHighChartConfi
                 align: "center",
                 verticalAlign: "bottom",
                 borderWidth: 0,
-            },
-            tooltip: {
-                valueSuffix: "",
-                formatter: this.tooltipFormatter(xDataArray),
             },
         };
     }
