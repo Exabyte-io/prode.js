@@ -42,12 +42,6 @@ export class AveragedPotentialProfileConfig extends TwoDimensionalHighChartConfi
         return "energy";
     }
 
-    tooltipFormatter(xDataArray, yAxisName = "energy") {
-        // note 'this' below refers to Highcharts tooltip scope
-        return () => `<b>point:</b> ${xDataArray[this.point.index].toFixed(4)}
-                      <b>${yAxisName}:</b> ${this.y.toFixed(4)}`;
-    }
-
     get series() {
         return _.map(this.yDataSeries, (item, index) => {
             return {
