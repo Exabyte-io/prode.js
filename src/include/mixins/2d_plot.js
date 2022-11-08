@@ -59,7 +59,8 @@ export class TwoDimensionalHighChartConfigMixin extends HighChartsConfig {
 
     tooltipFormatter(xDataArray) {
         const clsInstance = this;
-        return () => {
+        // note 'this' below refers to Highcharts tooltip scope, thus arrow functions won't work.
+        return function () {
             return (
                 "<b>" +
                 clsInstance.tooltipXAxisName +

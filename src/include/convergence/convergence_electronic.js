@@ -72,7 +72,8 @@ class ConvergenceElectronicConfig extends HighChartsConfig {
 
     // eslint-disable-next-line class-methods-use-this
     tooltipFormatter() {
-        return () => {
+        // note 'this' below refers to Highcharts tooltip scope
+        return function () {
             return "<b>iteration:</b> " + this.key + "<br><b>Δ E:</b> " + this.y.toExponential(1);
         };
     }
@@ -82,7 +83,7 @@ class ConvergenceElectronicConfig extends HighChartsConfig {
         return {
             ...super.yAxis(),
             labels: {
-                formatter: () => {
+                formatter() {
                     return this.value.toExponential();
                 },
             },
