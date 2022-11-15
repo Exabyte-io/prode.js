@@ -1,6 +1,6 @@
 import { ConvergenceElectronicProperty } from "./include/convergence/convergence_electronic";
 import { ConvergenceIonicProperty } from "./include/convergence/convergence_ionic";
-import { AveragedPotentialProfileProperty } from "./include/non-scalar/averaged_potential_profile";
+import { AveragePotentialProfileProperty } from "./include/non-scalar/average_potential_profile";
 import { BandGapsProperty } from "./include/non-scalar/band_gaps";
 import { BandStructureProperty } from "./include/non-scalar/band_structure";
 import { ChargeDensityProfileProperty } from "./include/non-scalar/charge_density_profile";
@@ -49,7 +49,7 @@ export const PROPERTY_CLASS_MAP = {
     [PROPERTIES.potential_profile]: PotentialProfileProperty,
     [PROPERTIES.charge_density_profile]: ChargeDensityProfileProperty,
     [PROPERTIES.jupyter_nb_endpoint]: null,
-    [PROPERTIES.averaged_potential_profile]: AveragedPotentialProfileProperty,
+    [PROPERTIES.average_potential_profile]: AveragePotentialProfileProperty,
     [PROPERTIES.valence_band_offset]: null,
 };
 

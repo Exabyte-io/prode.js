@@ -118,7 +118,7 @@ export default {
         type: PROPERTY_TYPES.non_scalar,
         domain: PROPERTY_DOMAINS.workflow,
     },
-    [PROPERTIES.averaged_potential_profile]: {
+    [PROPERTIES.average_potential_profile]: {
         type: PROPERTY_TYPES.non_scalar,
         isRefined: true,
     },
