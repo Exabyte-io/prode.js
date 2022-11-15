@@ -11,10 +11,10 @@ const NAMES = {
     1: "macroscopic average",
 };
 
-export class AveragedPotentialProfileProperty extends mix(Property).with(TwoDimensionalPlotMixin) {
+export class AveragePotentialProfileProperty extends mix(Property).with(TwoDimensionalPlotMixin) {
     // eslint-disable-next-line class-methods-use-this
     get subtitle() {
-        return "Averaged Potential Profile";
+        return "Average Potential Profile";
     }
 
     get yAxisTitle() {
@@ -27,11 +27,11 @@ export class AveragedPotentialProfileProperty extends mix(Property).with(TwoDime
 
     get chartConfig() {
         // eslint-disable-next-line no-use-before-define
-        return new AveragedPotentialProfileConfig(this).config;
+        return new AveragePotentialProfileConfig(this).config;
     }
 }
 
-export class AveragedPotentialProfileConfig extends TwoDimensionalHighChartConfigMixin {
+export class AveragePotentialProfileConfig extends TwoDimensionalHighChartConfigMixin {
     // eslint-disable-next-line class-methods-use-this
     get tooltipXAxisName() {
         return "z coordinate";
