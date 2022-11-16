@@ -10,33 +10,30 @@ const NAMES = {
 };
 
 export class PotentialProfileProperty extends mix(Property).with(TwoDimensionalPlotMixin) {
-
     get subtitle() {
-        return `Potential Profile`
+        return `Potential Profile`;
     }
 
     get yAxisTitle() {
-        return `Energy (${this.yAxis.units})`
+        return `Energy (${this.yAxis.units})`;
     }
 
     get xAxisTitle() {
-        return "Z Coordinate"
+        return "Z Coordinate";
     }
 
     get chartConfig() {
-        return (new PotentialProfileConfig(this)).config
+        return (new PotentialProfileConfig(this)).config;
     }
-
 }
 
 export class PotentialProfileConfig extends TwoDimensionalHighChartConfigMixin {
-
     get tooltipXAxisName() {
-        return "z coordinate"
+        return "z coordinate";
     }
 
     get tooltipYAxisName() {
-        return "energy"
+        return "energy";
     }
 
     get series() {
@@ -44,7 +41,7 @@ export class PotentialProfileConfig extends TwoDimensionalHighChartConfigMixin {
             return {
                 animation: false,
                 name: NAMES[index],
-                data: _.zip(this.xDataArray, item)
+                data: _.zip(this.xDataArray, item),
             };
         });
     }
@@ -53,12 +50,11 @@ export class PotentialProfileConfig extends TwoDimensionalHighChartConfigMixin {
         return {
             ...super.overrideConfig,
             legend: {
-                layout: 'horizontal',
-                align: 'center',
-                verticalAlign: 'bottom',
-                borderWidth: 0
+                layout: "horizontal",
+                align: "center",
+                verticalAlign: "bottom",
+                borderWidth: 0,
             },
-        }
+        };
     }
-
 }

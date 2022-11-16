@@ -1,13 +1,12 @@
-import _ from "underscore";
-import lodash from "lodash";
-import { flattenObject } from "@exabyte-io/code.js/dist/utils";
 import { NamedInMemoryEntity } from "@exabyte-io/code.js/dist/entity";
+import { flattenObject } from "@exabyte-io/code.js/dist/utils";
+import lodash from "lodash";
+import _ from "underscore";
+
 import { PROPERTY_TYPES } from "./settings";
 import PROPERTIES_TREE from "./tree";
 
-
 export class Property extends NamedInMemoryEntity {
-
     constructor(config) {
         super(config);
     }
@@ -22,28 +21,28 @@ export class Property extends NamedInMemoryEntity {
     }
 
     get context() {
-        return this.prop('context');
+        return this.prop("context");
     }
 
     get data() {
-        return this.prop('data');
+        return this.prop("data");
     }
 
     get units() {
-        return this.prop('units');
+        return this.prop("units");
     }
 
     get precision() {
-        return this.prop('precision', {});
+        return this.prop("precision", {});
     }
 
     // schema version for this property/monitor
     get schemaVersion() {
-        return this.prop('schemaVersion');
+        return this.prop("schemaVersion");
     }
 
     get sourceInfo() {
-        return this.prop('source.info') || {};
+        return this.prop("source.info") || {};
     }
 
     /**
@@ -51,14 +50,14 @@ export class Property extends NamedInMemoryEntity {
      * @return {String}
      */
     get group() {
-        return this.prop('group');
+        return this.prop("group");
     }
 
     get slug() {
-        return this.prop('slug');
+        return this.prop("slug");
     }
 
-    get exabyteId() {return this.prop('exabyteId')}
+    get exabyteId() { return this.prop("exabyteId"); }
 
     get type() {
         return this.propertyBranch.type || null;
@@ -84,20 +83,20 @@ export class Property extends NamedInMemoryEntity {
     }
 
     static get scalarsSubTree() {
-        return _.pick(Property.propertyTree, (val, key) => Property.isScalar(val))
+        return _.pick(Property.propertyTree, (val, key) => Property.isScalar(val));
     }
 
     // returns the branch corresponding to properties to be refined (or "Characteristics" previously)
     static get refinedSubTree() {
-        return _.pick(Property.propertyTree, (val, key) => Property.isRefined(val))
+        return _.pick(Property.propertyTree, (val, key) => Property.isRefined(val));
     }
 
     static get nonScalarsSubTree() {
-        return _.pick(Property.propertyTree, (val, key) => !Property.isScalar(val))
+        return _.pick(Property.propertyTree, (val, key) => !Property.isScalar(val));
     }
 
     static get convergencesSubTree() {
-        return _.pick(Property.propertyTree, (val, key) => Property.isConvergence(val))
+        return _.pick(Property.propertyTree, (val, key) => Property.isConvergence(val));
     }
 
     static propertyBranch(propertyName) {
@@ -112,12 +111,12 @@ export class Property extends NamedInMemoryEntity {
 
     static isConvergence(propertyConfig) {
         if (propertyConfig.hasOwnProperty("isConvergence")) return propertyConfig.isConvergence;
-        else return false;
+        return false;
     }
 
     static isRefined(propertyConfig) {
         if (propertyConfig.hasOwnProperty("isRefined")) return propertyConfig.isRefined;
-        else return false;
+        return false;
     }
 
     get propertyBranch() {
@@ -147,7 +146,7 @@ export class Property extends NamedInMemoryEntity {
     }
 
     flattenProperties() {
-        return [flattenObject(this.prop('data'))];
+        return [flattenObject(this.prop("data"))];
     }
 
     /**
@@ -157,10 +156,11 @@ export class Property extends NamedInMemoryEntity {
      */
     toRowValues() {
         return [
-            Object.assign({}, this.toJSON(), {
+            {
+                ...this.toJSON(),
                 slug: this.slug,
-                group: this.group
-            })
+                group: this.group,
+            },
         ];
     }
 
@@ -173,15 +173,15 @@ export class Property extends NamedInMemoryEntity {
      * Property.normalizePropertyName("band_gaps:direct"); // "band_gaps"
      */
     static normalizePropertyName(propName) {
-        return propName.split(':')[0];
+        return propName.split(":")[0];
     }
 
     static get refinedPropertyNames() {
-        return Object.keys(this.refinedSubTree)
+        return Object.keys(this.refinedSubTree);
     }
 
     // whether to omit a given property inside results. Defaults to false.
     static omitInResults(propertyName) {
-        return Property.propertyBranch(propertyName).omitInResults
+        return Property.propertyBranch(propertyName).omitInResults;
     }
 }

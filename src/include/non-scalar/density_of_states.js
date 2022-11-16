@@ -1,17 +1,16 @@
-import _ from "underscore";
 import lodash from "lodash";
 import { mix } from "mixwith";
+import _ from "underscore";
 
-import { Property } from "../../property";
-import { FermiEnergyMixin } from "../mixins/fermi_energy";
-import { TwoDimensionalPlotMixin } from "../mixins/2d_plot";
 import { HighChartsConfig } from "../../charts/highcharts";
+import { Property } from "../../property";
+import { TwoDimensionalPlotMixin } from "../mixins/2d_plot";
+import { FermiEnergyMixin } from "../mixins/fermi_energy";
 
 export class DensityOfStatesProperty extends mix(Property).with(
     TwoDimensionalPlotMixin,
     FermiEnergyMixin,
 ) {
-
     get subtitle() {
         return `Density Of States`;
     }
@@ -25,24 +24,22 @@ export class DensityOfStatesProperty extends mix(Property).with(
     }
 
     get legend() {
-        return this.prop('legend');
+        return this.prop("legend");
     }
 
     get chartConfig() {
         const clsInstance = new DensityOfStatesConfig(this);
         return clsInstance.config;
     }
-
 }
 
 export class DensityOfStatesConfig extends HighChartsConfig {
-
     constructor(property) {
         super({
             subtitle: property.subtitle,
             yAxisTitle: property.yAxisTitle,
             xAxisTitle: property.xAxisTitle,
-            yAxisType: 'linear',
+            yAxisType: "linear",
         });
 
         this.yDataSeries = property.yDataSeries;
@@ -54,7 +51,7 @@ export class DensityOfStatesConfig extends HighChartsConfig {
 
     // shifting values wrt fermi energy here
     cleanXDataArray(rawData = []) {
-        return _.map(_.flatten(rawData), x => {
+        return _.map(_.flatten(rawData), (x) => {
             const value = (this.fermiEnergy) ? (x - this.fermiEnergy) : x;
             return +(value.toPrecision(4));
         });
@@ -64,11 +61,11 @@ export class DensityOfStatesConfig extends HighChartsConfig {
         const clsInstance = this;
         const series_ = _.map(this.yDataSeries, (item, index) => {
             const legend = lodash.get(clsInstance, `legend.${index}`);
-            const name = legend && legend.element ? `${legend.element} ${legend.electronicState}` : 'Total';
+            const name = legend && legend.element ? `${legend.element} ${legend.electronicState}` : "Total";
             return {
-                data: _.zip(this.xDataArray, item.map(x => +(x.toPrecision(4)))),
-                name: name,
-                color: name === 'Total' ? '#000000' : null,
+                data: _.zip(this.xDataArray, item.map((x) => +(x.toPrecision(4)))),
+                name,
+                color: name === "Total" ? "#000000" : null,
                 animation: false,
             };
         });
@@ -78,11 +75,10 @@ export class DensityOfStatesConfig extends HighChartsConfig {
 
     tooltipFormatter(xDataArray, yAxisName = "energy") {
         return function () {
-            return '<b>state:</b> ' + this.series.name + '<br>' +
-                '<b>energy:</b> ' + this.key.toFixed(4) + '<br>' +
-                '<b>value: </b>  ' + this.y.toFixed(4);
-
-        }
+            return "<b>state:</b> " + this.series.name + "<br>"
+                + "<b>energy:</b> " + this.key.toFixed(4) + "<br>"
+                + "<b>value: </b>  " + this.y.toFixed(4);
+        };
     }
 
     xAxis() {
@@ -93,35 +89,33 @@ export class DensityOfStatesConfig extends HighChartsConfig {
                 label: {
                     text: "E_F",
                     style: {
-                        color: 'red',
+                        color: "red",
                     },
                     y: 15,
                     x: 5,
                     rotation: 0,
-                }
+                },
             }) : [],
-        }
+        };
     }
 
     get overrideConfig() {
         return {
-            colors: ['#7cb5ec', '#90ed7d', '#f7a35c', '#8085e9', '#f15c80', '#e4d354', '#2b908f', '#f45b5b', '#91e8e1'],
+            colors: ["#7cb5ec", "#90ed7d", "#f7a35c", "#8085e9", "#f15c80", "#e4d354", "#2b908f", "#f45b5b", "#91e8e1"],
             credits: {
-                enabled: false
+                enabled: false,
             },
             chart: {
-                type: 'spline',
-                zoomType: 'xy',
+                type: "spline",
+                zoomType: "xy",
                 animation: false,
             },
             legend: {
-                layout: 'horizontal',
-                align: 'center',
-                verticalAlign: 'bottom',
-                borderWidth: 0
+                layout: "horizontal",
+                align: "center",
+                verticalAlign: "bottom",
+                borderWidth: 0,
             },
-        }
+        };
     }
-
 }
-

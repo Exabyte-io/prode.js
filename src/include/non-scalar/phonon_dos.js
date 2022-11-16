@@ -1,7 +1,6 @@
 import { DensityOfStatesConfig, DensityOfStatesProperty } from "./density_of_states";
 
 export class PhononDOSProperty extends DensityOfStatesProperty {
-
     get subtitle() {
         return `Phonon Density Of States`;
     }
@@ -23,18 +22,14 @@ export class PhononDOSProperty extends DensityOfStatesProperty {
         // unset property
         return null;
     }
-
 }
 
 class PhononDOSConfig extends DensityOfStatesConfig {
-
     tooltipFormatter(xDataArray, yAxisName = "energy") {
         return function () {
-            return '<b>state:</b> ' + this.series.name + '<br>' +
-                '<b>energy:</b> ' + this.key.toFixed(4) + '<br>' +
-                '<b>value: </b>  ' + this.y.toFixed(4);
-
-        }
+            return "<b>state:</b> " + this.series.name + "<br>"
+                + "<b>energy:</b> " + this.key.toFixed(4) + "<br>"
+                + "<b>value: </b>  " + this.y.toFixed(4);
+        };
     }
-
 }

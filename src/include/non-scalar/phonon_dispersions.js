@@ -1,7 +1,6 @@
-import {BandStructureProperty, BandStructureConfig} from "./band_structure";
+import { BandStructureConfig, BandStructureProperty } from "./band_structure";
 
 export class PhononDispersionsProperty extends BandStructureProperty {
-
     get subtitle() {
         return `Phonon Dispersions`;
     }
@@ -19,11 +18,9 @@ export class PhononDispersionsProperty extends BandStructureProperty {
         // unset property
         return null;
     }
-
 }
 
 class PhononDispersionsConfig extends BandStructureConfig {
-
     tooltipFormatter(xDataArray, yAxisName = "frequency") {
         return super.tooltipFormatter(xDataArray, yAxisName);
     }

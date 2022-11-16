@@ -4,49 +4,49 @@
  * @param items {Object} Comparing values. E.g. [{name: 'Si2', value: 10}, {name: 'Li2', value: 12}]
  */
 export const compareChartConfig = function (title, items) {
-    const series = items.map((item, index)=> {
+    const series = items.map((item, index) => {
         return {
             name: item.name,
             data: (Number.isFinite(item.value)) ? [[index, item.value]] : [],
-        }
+        };
     });
     return {
         credits: {
-            enabled: false
+            enabled: false,
         },
         chart: {
-            type: 'scatter',
-            zoomType: 'xy'
+            type: "scatter",
+            zoomType: "xy",
         },
         title: {
-            text: ''
+            text: "",
         },
         subtitle: {
-            text: ''
+            text: "",
         },
         exporting: {
-            enabled: true
+            enabled: true,
         },
         xAxis: {
             labels: {
-                enabled: false
+                enabled: false,
             },
             title: {
                 enabled: true,
-                text: ''
+                text: "",
             },
             startOnTick: true,
             endOnTick: true,
-            showLastLabel: true
+            showLastLabel: true,
         },
         yAxis: {
             title: {
-                text: title
-            }
+                text: title,
+            },
         },
         legend: {
-            verticalAlign: 'bottom',
-            backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+            verticalAlign: "bottom",
+            backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || "#FFFFFF",
         },
         plotOptions: {
             scatter: {
@@ -55,24 +55,24 @@ export const compareChartConfig = function (title, items) {
                     states: {
                         hover: {
                             enabled: true,
-                            lineColor: 'rgb(100,100,100)'
-                        }
-                    }
+                            lineColor: "rgb(100,100,100)",
+                        },
+                    },
                 },
                 states: {
                     hover: {
                         marker: {
-                            enabled: false
-                        }
-                    }
+                            enabled: false,
+                        },
+                    },
                 },
                 tooltip: {
-                    headerFormat: '<b>{series.name}</b><br>',
-                    pointFormat: '{point.y}'
-                }
-            }
+                    headerFormat: "<b>{series.name}</b><br>",
+                    pointFormat: "{point.y}",
+                },
+            },
         },
-        series: series
+        series,
 
     };
 };
