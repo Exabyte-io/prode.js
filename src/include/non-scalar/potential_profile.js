@@ -1,3 +1,6 @@
+/* eslint-disable class-methods-use-this */
+/* eslint-disable max-classes-per-file */
+import _ from "lodash";
 import { mix } from "mixwith";
 
 import { Property } from "../../property";
@@ -8,24 +11,6 @@ const NAMES = {
     1: "averageVLocal",
     2: "averageVHartreePlusLocal",
 };
-
-export class PotentialProfileProperty extends mix(Property).with(TwoDimensionalPlotMixin) {
-    get subtitle() {
-        return `Potential Profile`;
-    }
-
-    get yAxisTitle() {
-        return `Energy (${this.yAxis.units})`;
-    }
-
-    get xAxisTitle() {
-        return "Z Coordinate";
-    }
-
-    get chartConfig() {
-        return (new PotentialProfileConfig(this)).config;
-    }
-}
 
 export class PotentialProfileConfig extends TwoDimensionalHighChartConfigMixin {
     get tooltipXAxisName() {
@@ -56,5 +41,23 @@ export class PotentialProfileConfig extends TwoDimensionalHighChartConfigMixin {
                 borderWidth: 0,
             },
         };
+    }
+}
+
+export class PotentialProfileProperty extends mix(Property).with(TwoDimensionalPlotMixin) {
+    get subtitle() {
+        return "Potential Profile";
+    }
+
+    get yAxisTitle() {
+        return `Energy (${this.yAxis.units})`;
+    }
+
+    get xAxisTitle() {
+        return "Z Coordinate";
+    }
+
+    get chartConfig() {
+        return (new PotentialProfileConfig(this)).config;
     }
 }

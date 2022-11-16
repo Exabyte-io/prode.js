@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { NamedInMemoryEntity } from "@exabyte-io/code.js/dist/entity";
 import { flattenObject } from "@exabyte-io/code.js/dist/utils";
 import lodash from "lodash";
@@ -7,12 +8,9 @@ import { PROPERTY_TYPES } from "./settings";
 import PROPERTIES_TREE from "./tree";
 
 export class Property extends NamedInMemoryEntity {
-    constructor(config) {
-        super(config);
-    }
-
     // try extracting props from data directly if not found on top-level
     prop(name, defaultValue) {
+        // eslint-disable-next-line prefer-rest-params
         return super.prop(...arguments) || this.propFromData(...arguments);
     }
 
@@ -110,11 +108,13 @@ export class Property extends NamedInMemoryEntity {
     }
 
     static isConvergence(propertyConfig) {
+        // eslint-disable-next-line no-prototype-builtins
         if (propertyConfig.hasOwnProperty("isConvergence")) return propertyConfig.isConvergence;
         return false;
     }
 
     static isRefined(propertyConfig) {
+        // eslint-disable-next-line no-prototype-builtins
         if (propertyConfig.hasOwnProperty("isRefined")) return propertyConfig.isRefined;
         return false;
     }

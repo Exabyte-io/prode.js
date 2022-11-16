@@ -3,7 +3,7 @@
  * @param title {String} Chart title
  * @param items {Object} Comparing values. E.g. [{name: 'Si2', value: 10}, {name: 'Li2', value: 12}]
  */
-export const compareChartConfig = function (title, items) {
+export function compareChartConfig(title, items) {
     const series = items.map((item, index) => {
         return {
             name: item.name,
@@ -75,4 +75,4 @@ export const compareChartConfig = function (title, items) {
         series,
 
     };
-};
+}

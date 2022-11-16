@@ -74,6 +74,7 @@ export class Pseudopotential extends Property {
         return Pseudopotential.filterUnique(array).filter((item) => item.apps.includes(appName));
     }
 
+    // eslint-disable-next-line no-shadow
     static filterRawDataByPath(rawData, path = "") {
         const regexp = new RegExp(path);
         return rawData.filter((el) => el.path.match(regexp));
@@ -85,6 +86,7 @@ export class Pseudopotential extends Property {
      */
     static sortPseudosByPattern(pseudos, pattern = "/gbrv/") {
         return pseudos.concat([]).sort((a, b) => {
+            // eslint-disable-next-line no-constant-condition
             return (1 ? a.path.includes(pattern) : 0) - (1 ? b.path.includes(pattern) : 0);
         });
     }

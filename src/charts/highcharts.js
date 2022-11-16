@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 export class HighChartsConfig {
     constructor({
         title, subtitle, yAxisTitle, xAxisTitle, yAxisType, series, legend,

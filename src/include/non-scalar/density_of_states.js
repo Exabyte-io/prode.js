@@ -1,3 +1,5 @@
+/* eslint-disable class-methods-use-this */
+/* eslint-disable max-classes-per-file */
 import lodash from "lodash";
 import { mix } from "mixwith";
 import _ from "underscore";
@@ -6,32 +8,6 @@ import { HighChartsConfig } from "../../charts/highcharts";
 import { Property } from "../../property";
 import { TwoDimensionalPlotMixin } from "../mixins/2d_plot";
 import { FermiEnergyMixin } from "../mixins/fermi_energy";
-
-export class DensityOfStatesProperty extends mix(Property).with(
-    TwoDimensionalPlotMixin,
-    FermiEnergyMixin,
-) {
-    get subtitle() {
-        return `Density Of States`;
-    }
-
-    get yAxisTitle() {
-        return `Density Of States (${this.yAxis.units})`;
-    }
-
-    get xAxisTitle() {
-        return `Energy (${this.xAxis.units})`;
-    }
-
-    get legend() {
-        return this.prop("legend");
-    }
-
-    get chartConfig() {
-        const clsInstance = new DensityOfStatesConfig(this);
-        return clsInstance.config;
-    }
-}
 
 export class DensityOfStatesConfig extends HighChartsConfig {
     constructor(property) {
@@ -73,7 +49,9 @@ export class DensityOfStatesConfig extends HighChartsConfig {
         return series_;
     }
 
+    // eslint-disable-next-line no-unused-vars
     tooltipFormatter(xDataArray, yAxisName = "energy") {
+        // eslint-disable-next-line func-names
         return function () {
             return "<b>state:</b> " + this.series.name + "<br>"
                 + "<b>energy:</b> " + this.key.toFixed(4) + "<br>"
@@ -117,5 +95,31 @@ export class DensityOfStatesConfig extends HighChartsConfig {
                 borderWidth: 0,
             },
         };
+    }
+}
+
+export class DensityOfStatesProperty extends mix(Property).with(
+    TwoDimensionalPlotMixin,
+    FermiEnergyMixin,
+) {
+    get subtitle() {
+        return "Density Of States";
+    }
+
+    get yAxisTitle() {
+        return `Density Of States (${this.yAxis.units})`;
+    }
+
+    get xAxisTitle() {
+        return `Energy (${this.xAxis.units})`;
+    }
+
+    get legend() {
+        return this.prop("legend");
+    }
+
+    get chartConfig() {
+        const clsInstance = new DensityOfStatesConfig(this);
+        return clsInstance.config;
     }
 }

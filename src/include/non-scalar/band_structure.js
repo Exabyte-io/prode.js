@@ -1,3 +1,5 @@
+/* eslint-disable class-methods-use-this */
+// eslint-disable-next-line max-classes-per-file
 import { math as codeJSMath } from "@exabyte-io/code.js/dist/math";
 import { deepClone } from "@exabyte-io/code.js/dist/utils";
 import lodash from "lodash";
@@ -11,26 +13,6 @@ import { ReciprocalPathMixin } from "../mixins/reciprocal_path";
 import { SpinDependentMixin } from "../mixins/spin_dependent";
 
 export const _POINT_COORDINATES_PRECISION_ = 4; // number of decimals to keep for point coordinates
-
-export class BandStructureProperty extends mix(Property).with(
-    SpinDependentMixin,
-    TwoDimensionalPlotMixin,
-    ReciprocalPathMixin,
-    FermiEnergyMixin,
-) {
-    get subtitle() {
-        return `Electronic Bandstructure`;
-    }
-
-    get yAxisTitle() {
-        return `Energy (${this.yAxis.units})`;
-    }
-
-    get chartConfig() {
-        const clsInstance = new BandStructureConfig(this);
-        return clsInstance.config;
-    }
-}
 
 export class BandStructureConfig extends HighChartsConfig {
     constructor(property) {
@@ -55,7 +37,8 @@ export class BandStructureConfig extends HighChartsConfig {
 
     // round each value in array to certain precision
     cleanXDataArray(rawData = []) {
-        return rawData.map((p) => p && p.map((c) => c && codeJSMath.roundValueToNDecimals(c, _POINT_COORDINATES_PRECISION_)));
+        return rawData.map((p) => p
+        && p.map((c) => c && codeJSMath.roundValueToNDecimals(c, _POINT_COORDINATES_PRECISION_)));
     }
 
     // returns the array of distances calculated from an array of points
@@ -107,16 +90,18 @@ export class BandStructureConfig extends HighChartsConfig {
 
     get series() {
         const { fermiEnergy } = this;
+        // eslint-disable-next-line no-unused-vars
         const { data } = this;
 
-        const series_ = _.map(this.yDataSeries, (item, index) => {
+        const series_ = lodash.map(this.yDataSeries, (item, index) => {
             // shift values by fermiEnergy
-            item = _.map(item, (x) => {
+            // eslint-disable-next-line no-param-reassign
+            item = lodash.map(item, (x) => {
                 return (fermiEnergy) ? (x - fermiEnergy) : x;
             });
             const spin = lodash.get(this, `spin.${index}`) > 0 ? "up" : "down";
             return {
-                data: _.zip(this.pointsDistanceArray, item),
+                data: lodash.zip(this.pointsDistanceArray, item),
                 name: spin,
                 color: spin === "up" ? "#3677d9" : "#36c9d9",
                 animation: false,
@@ -146,6 +131,7 @@ export class BandStructureConfig extends HighChartsConfig {
 
     tooltipFormatter(xDataArray, yAxisName = "energy") {
         // note 'this' below refers to Highcharts tooltip scope
+        // eslint-disable-next-line func-names
         return function () {
             return "<b>spin:</b> " + this.series.name + "<br>"
                 + "<b>point:</b> " + xDataArray.map(
@@ -203,5 +189,25 @@ export class BandStructureConfig extends HighChartsConfig {
                 enabled: false,
             },
         };
+    }
+}
+
+export class BandStructureProperty extends mix(Property).with(
+    SpinDependentMixin,
+    TwoDimensionalPlotMixin,
+    ReciprocalPathMixin,
+    FermiEnergyMixin,
+) {
+    get subtitle() {
+        return "Electronic Bandstructure";
+    }
+
+    get yAxisTitle() {
+        return `Energy (${this.yAxis.units})`;
+    }
+
+    get chartConfig() {
+        const clsInstance = new BandStructureConfig(this);
+        return clsInstance.config;
     }
 }

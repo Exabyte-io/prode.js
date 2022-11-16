@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 import _ from "lodash";
 
 import { HighChartsConfig } from "../../charts/highcharts";
@@ -59,6 +60,7 @@ export class TwoDimensionalHighChartConfigMixin extends HighChartsConfig {
     tooltipFormatter(xDataArray) {
         const clsInstance = this;
         // note 'this' below refers to Highcharts tooltip scope, thus arrow functions won't work.
+        // eslint-disable-next-line func-names
         return function () {
             return (
                 "<b>"

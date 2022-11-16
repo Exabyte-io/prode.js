@@ -34,6 +34,7 @@ export class PropertyFactory {
 
     // TODO: generalize the tree
     static _precisionFunctionByMethodType(methodType = "DFTPseudopotential") {
+        // eslint-disable-next-line func-names
         return this.methodsTree[methodType] || function () {}; // return empty function (class) by default
     }
 }

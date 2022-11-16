@@ -1,11 +1,23 @@
+/* eslint-disable class-methods-use-this */
+/* eslint-disable max-classes-per-file */
 import { mix } from "mixwith";
 
 import { Property } from "../../property";
 import { TwoDimensionalHighChartConfigMixin, TwoDimensionalPlotMixin } from "../mixins/2d_plot";
 
+export class ChargeDensityProfileConfig extends TwoDimensionalHighChartConfigMixin {
+    get tooltipXAxisName() {
+        return "z coordinate";
+    }
+
+    get tooltipYAxisName() {
+        return "charge density";
+    }
+}
+
 export class ChargeDensityProfileProperty extends mix(Property).with(TwoDimensionalPlotMixin) {
     get subtitle() {
-        return `Charge Density Profile`;
+        return "Charge Density Profile";
     }
 
     get yAxisTitle() {
@@ -18,15 +30,5 @@ export class ChargeDensityProfileProperty extends mix(Property).with(TwoDimensio
 
     get chartConfig() {
         return (new ChargeDensityProfileConfig(this)).config;
-    }
-}
-
-export class ChargeDensityProfileConfig extends TwoDimensionalHighChartConfigMixin {
-    get tooltipXAxisName() {
-        return "z coordinate";
-    }
-
-    get tooltipYAxisName() {
-        return "charge density";
     }
 }

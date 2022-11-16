@@ -1,14 +1,8 @@
+/* eslint-disable max-classes-per-file */
 import _ from "underscore";
 
 import { HighChartsConfig } from "../../charts/highcharts";
 import { Property } from "../../property";
-
-export class ConvergenceIonicProperty extends Property {
-    get chartConfig() {
-        const clsInstance = new ConvergenceIonicConfig(this);
-        return clsInstance.config;
-    }
-}
 
 class ConvergenceIonicConfig extends HighChartsConfig {
     constructor(monitor) {
@@ -27,9 +21,19 @@ class ConvergenceIonicConfig extends HighChartsConfig {
         });
     }
 
+    // eslint-disable-next-line class-methods-use-this
     tooltipFormatter() {
+        // eslint-disable-next-line func-names
         return function () {
+            // eslint-disable-next-line no-useless-concat
             return "<b>step:</b> " + this.key + "<br>" + "<b>Energy:</b> " + this.y.toFixed(4);
         };
+    }
+}
+
+export class ConvergenceIonicProperty extends Property {
+    get chartConfig() {
+        const clsInstance = new ConvergenceIonicConfig(this);
+        return clsInstance.config;
     }
 }

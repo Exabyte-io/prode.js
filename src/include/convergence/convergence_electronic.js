@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 import _ from "underscore";
 
 import { HighChartsConfig } from "../../charts/highcharts";
@@ -73,6 +74,7 @@ class ConvergenceElectronicConfig extends HighChartsConfig {
     // eslint-disable-next-line class-methods-use-this
     tooltipFormatter() {
         // note 'this' below refers to Highcharts tooltip scope
+        // eslint-disable-next-line func-names
         return function () {
             return "<b>iteration:</b> " + this.key + "<br><b>Δ E:</b> " + this.y.toExponential(1);
         };
