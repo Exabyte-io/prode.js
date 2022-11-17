@@ -5,23 +5,24 @@ import { HighChartsConfig } from "../../charts/highcharts";
 
 /* eslint-disable max-classes-per-file */
 
-export const TwoDimensionalPlotMixin = (superclass) => class extends superclass {
-    get xDataArray() {
-        return this.prop("xDataArray");
-    }
+export const TwoDimensionalPlotMixin = (superclass) =>
+    class extends superclass {
+        get xDataArray() {
+            return this.prop("xDataArray");
+        }
 
-    get yDataSeries() {
-        return this.prop("yDataSeries");
-    }
+        get yDataSeries() {
+            return this.prop("yDataSeries");
+        }
 
-    get yAxis() {
-        return this.prop("yAxis");
-    }
+        get yAxis() {
+            return this.prop("yAxis");
+        }
 
-    get xAxis() {
-        return this.prop("xAxis");
-    }
-};
+        get xAxis() {
+            return this.prop("xAxis");
+        }
+    };
 
 export class TwoDimensionalHighChartConfigMixin extends HighChartsConfig {
     constructor(property) {
@@ -63,14 +64,14 @@ export class TwoDimensionalHighChartConfigMixin extends HighChartsConfig {
         // eslint-disable-next-line func-names
         return function () {
             return (
-                "<b>"
-                + clsInstance.tooltipXAxisName
-                + "</b> "
-                + xDataArray[this.point.index].toFixed(4)
-                + "<br><b>"
-                + clsInstance.tooltipYAxisName
-                + ": </b>  "
-                + this.y.toFixed(4)
+                "<b>" +
+                clsInstance.tooltipXAxisName +
+                "</b> " +
+                xDataArray[this.point.index].toFixed(4) +
+                "<br><b>" +
+                clsInstance.tooltipYAxisName +
+                ": </b>  " +
+                this.y.toFixed(4)
             );
         };
     }

@@ -55,7 +55,9 @@ export class Property extends NamedInMemoryEntity {
         return this.prop("slug");
     }
 
-    get exabyteId() { return this.prop("exabyteId"); }
+    get exabyteId() {
+        return this.prop("exabyteId");
+    }
 
     get type() {
         return this.propertyBranch.type || null;
@@ -100,7 +102,7 @@ export class Property extends NamedInMemoryEntity {
     static propertyBranch(propertyName) {
         const tree = Property.propertyTree;
         // safely return empty object in case the tree does not contain the name key
-        return _.find(tree, (v, k) => (k === propertyName || (v && v.name === this.name))) || {};
+        return _.find(tree, (v, k) => k === propertyName || (v && v.name === this.name)) || {};
     }
 
     static isScalar(propertyConfig) {
@@ -122,7 +124,7 @@ export class Property extends NamedInMemoryEntity {
     get propertyBranch() {
         const tree = Property.propertyTree;
         // safely return empty object in case the tree does not contain the name key
-        return _.find(tree, (v, k) => (k === this.name || (v && v.name === this.name))) || {};
+        return _.find(tree, (v, k) => k === this.name || (v && v.name === this.name)) || {};
     }
 
     get isScalar() {

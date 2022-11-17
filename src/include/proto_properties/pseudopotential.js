@@ -60,8 +60,11 @@ export class Pseudopotential extends Property {
      * @param {String} exchangeCorrelation.functional
      */
     static filterRawDataByExchangeCorrelation(rawData, exchangeCorrelation) {
-        return rawData.filter((el) => Object.keys(exchangeCorrelation)
-            .reduce((mem, key) => mem && el.exchangeCorrelation[key] === exchangeCorrelation[key]));
+        return rawData.filter((el) =>
+            Object.keys(exchangeCorrelation).reduce(
+                (mem, key) => mem && el.exchangeCorrelation[key] === exchangeCorrelation[key],
+            ),
+        );
     }
 
     // filter unique (assuming that path is always unique)
