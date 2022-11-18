@@ -3,10 +3,7 @@
 import { mix } from "mixwith";
 
 import { Property } from "../../property";
-import {
-    TwoDimensionalHighChartConfigMixin,
-    TwoDimensionalPlotMixin,
-} from "../mixins/2d_plot";
+import { TwoDimensionalHighChartConfigMixin, TwoDimensionalPlotMixin } from "../mixins/2d_plot";
 
 export class ReactionEnergyProfileConfig extends TwoDimensionalHighChartConfigMixin {
     get tooltipXAxisName() {

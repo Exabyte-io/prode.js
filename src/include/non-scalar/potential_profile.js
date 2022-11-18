@@ -58,6 +58,6 @@ export class PotentialProfileProperty extends mix(Property).with(TwoDimensionalP
     }
 
     get chartConfig() {
-        return (new PotentialProfileConfig(this)).config;
+        return new PotentialProfileConfig(this).config;
     }
 }

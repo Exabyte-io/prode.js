@@ -7,9 +7,16 @@ class PhononDOSConfig extends DensityOfStatesConfig {
     tooltipFormatter(xDataArray, yAxisName = "energy") {
         // eslint-disable-next-line func-names
         return function () {
-            return "<b>state:</b> " + this.series.name + "<br>"
-                + "<b>energy:</b> " + this.key.toFixed(4) + "<br>"
-                + "<b>value: </b>  " + this.y.toFixed(4);
+            return (
+                "<b>state:</b> " +
+                this.series.name +
+                "<br>" +
+                "<b>energy:</b> " +
+                this.key.toFixed(4) +
+                "<br>" +
+                "<b>value: </b>  " +
+                this.y.toFixed(4)
+            );
         };
     }
 }

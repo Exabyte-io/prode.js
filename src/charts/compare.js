@@ -7,7 +7,7 @@ export function compareChartConfig(title, items) {
     const series = items.map((item, index) => {
         return {
             name: item.name,
-            data: (Number.isFinite(item.value)) ? [[index, item.value]] : [],
+            data: Number.isFinite(item.value) ? [[index, item.value]] : [],
         };
     });
     return {
@@ -46,7 +46,8 @@ export function compareChartConfig(title, items) {
         },
         legend: {
             verticalAlign: "bottom",
-            backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || "#FFFFFF",
+            backgroundColor:
+                (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || "#FFFFFF",
         },
         plotOptions: {
             scatter: {
@@ -73,6 +74,5 @@ export function compareChartConfig(title, items) {
             },
         },
         series,
-
     };
 }

@@ -1,8 +1,6 @@
 /* eslint-disable class-methods-use-this */
 export class HighChartsConfig {
-    constructor({
-        title, subtitle, yAxisTitle, xAxisTitle, yAxisType, series, legend,
-    }) {
+    constructor({ title, subtitle, yAxisTitle, xAxisTitle, yAxisType, series, legend }) {
         this.title = title;
         this.subtitle = subtitle;
         this.yAxisTitle = yAxisTitle;

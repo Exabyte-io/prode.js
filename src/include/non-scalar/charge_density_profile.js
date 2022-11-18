@@ -29,6 +29,6 @@ export class ChargeDensityProfileProperty extends mix(Property).with(TwoDimensio
     }
 
     get chartConfig() {
-        return (new ChargeDensityProfileConfig(this)).config;
+        return new ChargeDensityProfileConfig(this).config;
     }
 }
