@@ -1,6 +1,8 @@
-
+/* eslint-disable class-methods-use-this */
 export class HighChartsConfig {
-    constructor({title, subtitle, yAxisTitle, xAxisTitle, yAxisType, series, legend}) {
+    constructor({
+        title, subtitle, yAxisTitle, xAxisTitle, yAxisType, series, legend,
+    }) {
         this.title = title;
         this.subtitle = subtitle;
         this.yAxisTitle = yAxisTitle;
@@ -13,7 +15,7 @@ export class HighChartsConfig {
     yAxis() {
         return {
             title: {
-                text: this.yAxisTitle
+                text: this.yAxisTitle,
             },
             type: this.yAxisType,
             gridLineColor: "#eee",
@@ -21,19 +23,19 @@ export class HighChartsConfig {
                 {
                     value: 0,
                     width: 1,
-                    color: '#808080'
-                }
-            ]
-        }
+                    color: "#808080",
+                },
+            ],
+        };
     }
 
     xAxis() {
         return {
             title: {
-                text: this.xAxisTitle
+                text: this.xAxisTitle,
             },
             tickPixelInterval: 200,
-        }
+        };
     }
 
     // override in children
@@ -42,20 +44,20 @@ export class HighChartsConfig {
     }
 
     plotSingleLine({
-                       value = 0.0,
-                       width = 1,
-                       label = {text: 'Point'},
-                       color = 'red',
-                       dashStyle = "dash",
-                   }) {
+        value = 0.0,
+        width = 1,
+        label = { text: "Point" },
+        color = "red",
+        dashStyle = "dash",
+    }) {
         return [
             {
-                value: value,
-                width: width,
-                label: label,
-                color: color,
-                dashStyle: dashStyle
-            }
+                value,
+                width,
+                label,
+                color,
+                dashStyle,
+            },
         ];
     }
 
@@ -66,19 +68,19 @@ export class HighChartsConfig {
     get config() {
         return {
             credits: {
-                enabled: false
+                enabled: false,
             },
             chart: {
                 animation: false,
-                zoomType: 'xy',
+                zoomType: "xy",
             },
             title: {
-                text: '',
-                x: -20 //center
+                text: "",
+                x: -20, // center
             },
             subtitle: {
                 text: this.subtitle,
-                x: -20
+                x: -20,
             },
             yAxis: this.yAxis(),
             xAxis: this.xAxis(),
@@ -87,12 +89,12 @@ export class HighChartsConfig {
             },
             plotOptions: {
                 series: {
-                    animation: false
-                }
+                    animation: false,
+                },
             },
             legend: {
                 enabled: this.legend,
-                maxHeight: 70
+                maxHeight: 70,
             },
             series: this.series,
             ...this.overrideConfig,
@@ -103,6 +105,4 @@ export class HighChartsConfig {
     get overrideConfig() {
         return {};
     }
-
 }
-
