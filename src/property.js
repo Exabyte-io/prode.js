@@ -39,6 +39,10 @@ export class Property extends NamedInMemoryEntity {
         return this.prop("schemaVersion");
     }
 
+    get source() {
+        return this.prop("source");
+    }
+
     get sourceInfo() {
         return this.prop("source.info") || {};
     }

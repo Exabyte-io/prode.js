@@ -28,10 +28,6 @@ export class Pseudopotential extends Property {
         return this.prop("exchangeCorrelation");
     }
 
-    get source() {
-        return this.prop("source");
-    }
-
     get type() {
         return this.prop("type");
     }
