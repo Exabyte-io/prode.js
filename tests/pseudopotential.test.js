@@ -72,8 +72,8 @@ describe("Pseudopotential", () => {
         expect(pp.element).to.be.a("string").that.is.equal("Si");
     });
 
-    it("gets basename", () => {
-        expect(pp.basename).to.be.a("string").that.is.equal("POTCAR");
+    it("gets filename", () => {
+        expect(pp.filename).to.be.a("string").that.is.equal("POTCAR");
     });
 
     it("gets applications", () => {

@@ -1,4 +1,3 @@
-import path from "path";
 import _ from "underscore";
 
 import { Property } from "../../property";
@@ -8,8 +7,8 @@ export class Pseudopotential extends Property {
         return this.prop("path");
     }
 
-    get basename() {
-        return path.basename(this.path);
+    get filename() {
+        return this.prop("filename");
     }
 
     get isCustom() {
@@ -30,6 +29,10 @@ export class Pseudopotential extends Property {
 
     get type() {
         return this.prop("type");
+    }
+
+    get version() {
+        return this.prop("version");
     }
 
     /**
@@ -130,20 +133,19 @@ export class Pseudopotential extends Property {
      */
     static sortPseudosByPattern(pseudos, pattern = "/gbrv/") {
         return pseudos.concat([]).sort((a, b) => {
-            // eslint-disable-next-line no-constant-condition
-            return (1 ? b.path.includes(pattern) : 0) - (1 ? a.path.includes(pattern) : 0);
+            return (b.path.includes(pattern) ? 1 : 0) - (a.path.includes(pattern) ? 1 : 0);
         });
     }
 
     /**
      * Prioritizes pseudos with 'default' and '5.2' (version) in path (VASP)
      */
-    static sortByPathVASP(pseudos) {
+    static sortByPathVASP(pseudos, version = "5.2") {
         return pseudos.concat([]).sort((a, b) => {
-            if (a.path.includes("default") && a.path.includes("5.2")) {
+            if (a.path.includes("default") && a.path.includes(version)) {
                 return -1;
             }
-            if (b.path.includes("default") && b.path.includes("5.2")) {
+            if (b.path.includes("default") && b.path.includes(version)) {
                 return 1;
             }
             return 0;
