@@ -1,33 +1,36 @@
+/* eslint-disable max-classes-per-file */
+import _ from "lodash";
+
 import { HighChartsConfig } from "../../charts/highcharts";
 
-export const TwoDimensionalPlotMixin = (superclass) => class extends superclass {
+/* eslint-disable max-classes-per-file */
 
-    get xDataArray() {
-        return this.prop('xDataArray');
-    }
+export const TwoDimensionalPlotMixin = (superclass) =>
+    class extends superclass {
+        get xDataArray() {
+            return this.prop("xDataArray");
+        }
 
-    get yDataSeries() {
-        return this.prop('yDataSeries');
-    }
+        get yDataSeries() {
+            return this.prop("yDataSeries");
+        }
 
-    get yAxis() {
-        return this.prop('yAxis');
-    }
+        get yAxis() {
+            return this.prop("yAxis");
+        }
 
-    get xAxis() {
-        return this.prop('xAxis');
-    }
-
-};
+        get xAxis() {
+            return this.prop("xAxis");
+        }
+    };
 
 export class TwoDimensionalHighChartConfigMixin extends HighChartsConfig {
-
     constructor(property) {
         super({
             subtitle: property.subtitle,
             yAxisTitle: property.yAxisTitle,
             xAxisTitle: property.xAxisTitle,
-            yAxisType: 'linear',
+            yAxisType: "linear",
         });
         this.legend = false;
         this.xDataArray = property.xDataArray;
@@ -35,7 +38,7 @@ export class TwoDimensionalHighChartConfigMixin extends HighChartsConfig {
     }
 
     get series() {
-        return _.map(this.yDataSeries, (item, index) => {
+        return _.map(this.yDataSeries, (item) => {
             return {
                 animation: false,
                 data: _.zip(this.xDataArray, item),
@@ -44,47 +47,63 @@ export class TwoDimensionalHighChartConfigMixin extends HighChartsConfig {
     }
 
     // override upon inheritance
-    get tooltipXAxisName() {}
+    // eslint-disable-next-line class-methods-use-this
+    get tooltipXAxisName() {
+        return "";
+    }
 
     // override upon inheritance
-    get tooltipYAxisName() {}
+    // eslint-disable-next-line class-methods-use-this
+    get tooltipYAxisName() {
+        return "";
+    }
 
     tooltipFormatter(xDataArray) {
         const clsInstance = this;
+        // note 'this' below refers to Highcharts tooltip scope, thus arrow functions won't work.
+        // eslint-disable-next-line func-names
         return function () {
-            return '<b>' + clsInstance.tooltipXAxisName + '</b> ' + xDataArray[this.point.index].toFixed(4) + '<br>' +
-                '<b>' + clsInstance.tooltipYAxisName + ': </b>  ' + this.y.toFixed(4);
-        }
+            return (
+                "<b>" +
+                clsInstance.tooltipXAxisName +
+                "</b> " +
+                xDataArray[this.point.index].toFixed(4) +
+                "<br><b>" +
+                clsInstance.tooltipYAxisName +
+                ": </b>  " +
+                this.y.toFixed(4)
+            );
+        };
     }
 
     get overrideConfig() {
-        const xDataArray = this.xDataArray;
+        const { xDataArray } = this;
         return {
             chart: {
                 animation: false,
-                type: 'spline',
-                zoomType: 'xy'
+                type: "spline",
+                zoomType: "xy",
             },
             plotOptions: {
                 spline: {
                     lineWidth: 2,
                     states: {
                         hover: {
-                            lineWidth: 6
-                        }
+                            lineWidth: 6,
+                        },
                     },
                     marker: {
-                        enabled: false
-                    }
-                }
+                        enabled: false,
+                    },
+                },
             },
             tooltip: {
-                valueSuffix: '',
-                formatter: this.tooltipFormatter(xDataArray)
+                valueSuffix: "",
+                formatter: this.tooltipFormatter(xDataArray),
             },
             legend: {
-                enabled: false
-            }
-        }
+                enabled: false,
+            },
+        };
     }
 }

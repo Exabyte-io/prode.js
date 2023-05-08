@@ -1,4 +1,3 @@
-/* eslint-disable class-methods-use-this */
 /* eslint-disable max-classes-per-file */
 import _ from "lodash";
 import { mix } from "mixwith";
@@ -6,17 +5,40 @@ import { mix } from "mixwith";
 import { Property } from "../../property";
 import { TwoDimensionalHighChartConfigMixin, TwoDimensionalPlotMixin } from "../mixins/2d_plot";
 
+/* eslint-disable max-classes-per-file */
+
 const NAMES = {
-    0: "averageVHartree",
-    1: "averageVLocal",
-    2: "averageVHartreePlusLocal",
+    0: "planar average",
+    1: "macroscopic average",
 };
 
-export class PotentialProfileConfig extends TwoDimensionalHighChartConfigMixin {
+export class AveragePotentialProfileProperty extends mix(Property).with(TwoDimensionalPlotMixin) {
+    // eslint-disable-next-line class-methods-use-this
+    get subtitle() {
+        return "Average Potential Profile";
+    }
+
+    get yAxisTitle() {
+        return `Energy (${this.yAxis.units})`;
+    }
+
+    get xAxisTitle() {
+        return `Coordinate (${this.xAxis.units})`;
+    }
+
+    get chartConfig() {
+        // eslint-disable-next-line no-use-before-define
+        return new AveragePotentialProfileConfig(this).config;
+    }
+}
+
+export class AveragePotentialProfileConfig extends TwoDimensionalHighChartConfigMixin {
+    // eslint-disable-next-line class-methods-use-this
     get tooltipXAxisName() {
         return "z coordinate";
     }
 
+    // eslint-disable-next-line class-methods-use-this
     get tooltipYAxisName() {
         return "energy";
     }
@@ -41,23 +63,5 @@ export class PotentialProfileConfig extends TwoDimensionalHighChartConfigMixin {
                 borderWidth: 0,
             },
         };
-    }
-}
-
-export class PotentialProfileProperty extends mix(Property).with(TwoDimensionalPlotMixin) {
-    get subtitle() {
-        return "Potential Profile";
-    }
-
-    get yAxisTitle() {
-        return `Energy (${this.yAxis.units})`;
-    }
-
-    get xAxisTitle() {
-        return "Z Coordinate";
-    }
-
-    get chartConfig() {
-        return new PotentialProfileConfig(this).config;
     }
 }

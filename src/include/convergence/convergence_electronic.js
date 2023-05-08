@@ -1,15 +1,17 @@
+/* eslint-disable max-classes-per-file */
 import _ from "underscore";
 
-import { Property } from "../../property";
 import { HighChartsConfig } from "../../charts/highcharts";
+import { Property } from "../../property";
+
+/* eslint-disable max-classes-per-file */
 
 export class ConvergenceElectronicProperty extends Property {
-
     get chartConfig() {
+        // eslint-disable-next-line no-use-before-define
         const clsInstance = new ConvergenceElectronicConfig(this);
         return clsInstance.config;
     }
-
 
     /**
      * Data is transferred in a flat way from Rupy but it is stored in a nested array format on webapp.
@@ -23,56 +25,59 @@ export class ConvergenceElectronicProperty extends Property {
      * );
      * // returns [[0,1], [2]]
      */
+    // eslint-disable-next-line class-methods-use-this
     _convertData(currentData = [], newData = []) {
         let data = [];
         currentData.forEach((values, index) => {
-            values.forEach(value => {
+            values.forEach((value) => {
                 data.push({
-                    index: index,
-                    value: value
-                })
-            })
+                    index,
+                    value,
+                });
+            });
         });
-        data = Object.values(_.groupBy(data.concat(newData), x => x.index));
-        return data.map(energies => energies.map(energy => energy.value));
+        data = Object.values(_.groupBy(data.concat(newData), (x) => x.index));
+        return data.map((energies) => energies.map((energy) => energy.value));
     }
-
 }
 
 class ConvergenceElectronicConfig extends HighChartsConfig {
     constructor(monitor) {
         let iteration = 1;
-        let data = Object.assign({}, monitor.data);
+        let data = { ...monitor.data };
         // Old monitors are stored in a flat list, hence data = [data]
-        if (!_.isArray(data[0])) data = [data];
+        if (!Array.isArray(data[0])) data = [data];
         const series = _.map(data, (values, index) => {
             // TODO: format index properly
-            const name = parseInt(index) + 1;
+            const name = parseInt(index, 10) + 1;
             return {
                 name: `step-${name}`,
                 data: _.map(values, (value) => {
                     // give points unique xAxis value to show multiple series properly in highCharts
                     const point = [iteration, Math.abs(value)];
                     iteration += 1;
-                    return point
-                })
-            }
+                    return point;
+                }),
+            };
         });
 
         super({
             subtitle: "Convergence Electronic",
             yAxisTitle: `Convergence Electronic (${monitor.units})`,
-            xAxisTitle: 'Iterations',
-            yAxisType: 'logarithmic',
-            series: series,
+            xAxisTitle: "Iterations",
+            yAxisType: "logarithmic",
+            series,
             legend: series.length > 1,
-        })
+        });
     }
 
+    // eslint-disable-next-line class-methods-use-this
     tooltipFormatter() {
+        // note 'this' below refers to Highcharts tooltip scope
+        // eslint-disable-next-line func-names
         return function () {
-            return '<b>iteration:</b> ' + this.key + '<br>' + '<b>Δ E:</b> ' + this.y.toExponential(1);
-        }
+            return "<b>iteration:</b> " + this.key + "<br><b>Δ E:</b> " + this.y.toExponential(1);
+        };
     }
 
     // yAxis() can't be a getter because of super!
@@ -80,10 +85,10 @@ class ConvergenceElectronicConfig extends HighChartsConfig {
         return {
             ...super.yAxis(),
             labels: {
-                formatter: function () {
+                formatter() {
                     return this.value.toExponential();
-                }
-            }
-        }
+                },
+            },
+        };
     }
 }

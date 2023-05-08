@@ -1,20 +1,21 @@
-import { WorkflowProperty } from "./include/non-scalar/workflow";
-import { BandGapsProperty } from "./include/non-scalar/band_gaps";
-import { StructureProperty } from "./include/non-scalar/structure";
-import { PhononDOSProperty } from "./include/non-scalar/phonon_dos";
-import { BandStructureProperty } from "./include/non-scalar/band_structure";
-import { DensityOfStatesProperty } from "./include/non-scalar/density_of_states";
-import { PotentialProfileProperty } from "./include/non-scalar/potential_profile";
-import { ConvergenceIonicProperty } from "./include/convergence/convergence_ionic";
-import { PhononDispersionsProperty } from "./include/non-scalar/phonon_dispersions";
-import { PROPERTIES, PROPERTY_TYPES } from "./settings";
-import { ChargeDensityProfileProperty } from "./include/non-scalar/charge_density_profile";
 import { ConvergenceElectronicProperty } from "./include/convergence/convergence_electronic";
+import { ConvergenceIonicProperty } from "./include/convergence/convergence_ionic";
+import { AveragePotentialProfileProperty } from "./include/non-scalar/average_potential_profile";
+import { BandGapsProperty } from "./include/non-scalar/band_gaps";
+import { BandStructureProperty } from "./include/non-scalar/band_structure";
+import { ChargeDensityProfileProperty } from "./include/non-scalar/charge_density_profile";
+import { DensityOfStatesProperty } from "./include/non-scalar/density_of_states";
+import { PhononDispersionsProperty } from "./include/non-scalar/phonon_dispersions";
+import { PhononDOSProperty } from "./include/non-scalar/phonon_dos";
+import { PotentialProfileProperty } from "./include/non-scalar/potential_profile";
 import { ReactionEnergyProfileProperty } from "./include/non-scalar/reaction_energy_profile";
-import { Property } from "./property";
-import { TensorProperty } from "./include/primitive/tensor";
+import { StructureProperty } from "./include/non-scalar/structure";
+import { WorkflowProperty } from "./include/non-scalar/workflow";
 import { ObjectProperty } from "./include/primitive/object";
+import { TensorProperty } from "./include/primitive/tensor";
 import { Pseudopotential } from "./include/proto_properties/pseudopotential";
+import { Property } from "./property";
+import { PROPERTIES, PROPERTY_TYPES } from "./settings";
 
 /**
  * @desc Used in property factory to map property names to property classes.
@@ -49,6 +50,8 @@ export const PROPERTY_CLASS_MAP = {
     [PROPERTIES.potential_profile]: PotentialProfileProperty,
     [PROPERTIES.charge_density_profile]: ChargeDensityProfileProperty,
     [PROPERTIES.jupyter_nb_endpoint]: null,
+    [PROPERTIES.average_potential_profile]: AveragePotentialProfileProperty,
+    [PROPERTIES.valence_band_offset]: null,
     [PROPERTIES.pseudopotential]: Pseudopotential,
     [PROPERTIES.boundary_conditions]: null,
 };
@@ -58,4 +61,4 @@ export const PROPERTY_BRANCH_MAP = {
     [PROPERTY_TYPES.object]: ObjectProperty,
     [PROPERTY_TYPES.non_scalar]: Property,
     [PROPERTY_TYPES.scalar]: Property,
-}
+};
