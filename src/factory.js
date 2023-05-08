@@ -1,4 +1,4 @@
-import _ from "lodash";
+import lodash from "lodash";
 
 import { PROPERTY_BRANCH_MAP, PROPERTY_CLASS_MAP } from "./classmap";
 import { Property } from "./property";
@@ -14,9 +14,9 @@ export class PropertyFactory {
     static methodsTree = {};
 
     static create(config, methodType) {
-        const name = _.isString(config)
+        const name = lodash.isString(config)
             ? config
-            : _.get(config, "data.name", "") || _.get(config, "name", "");
+            : lodash.get(config, "data.name", "") || lodash.get(config, "name", "");
 
         const PropertyClass = this._propertyClassByName(name);
         const precisionFn = this._precisionFunctionByMethodType(methodType);

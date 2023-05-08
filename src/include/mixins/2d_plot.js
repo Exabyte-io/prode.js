@@ -1,5 +1,5 @@
 /* eslint-disable max-classes-per-file */
-import _ from "lodash";
+import lodash from "lodash";
 
 import { HighChartsConfig } from "../../charts/highcharts";
 
@@ -38,10 +38,10 @@ export class TwoDimensionalHighChartConfigMixin extends HighChartsConfig {
     }
 
     get series() {
-        return _.map(this.yDataSeries, (item) => {
+        return lodash.map(this.yDataSeries, (item) => {
             return {
                 animation: false,
-                data: _.zip(this.xDataArray, item),
+                data: lodash.zip(this.xDataArray, item),
             };
         });
     }
