@@ -126,4 +126,10 @@ export default {
         type: PROPERTY_TYPES.scalar,
         isRefined: true,
     },
+    [PROPERTIES.pseudopotential]: {
+        type: PROPERTY_TYPES.non_scalar,
+    },
+    [PROPERTIES.boundary_conditions]: {
+        type: PROPERTY_TYPES.non_scalar,
+    },
 };

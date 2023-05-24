@@ -13,6 +13,7 @@ import { StructureProperty } from "./include/non-scalar/structure";
 import { WorkflowProperty } from "./include/non-scalar/workflow";
 import { ObjectProperty } from "./include/primitive/object";
 import { TensorProperty } from "./include/primitive/tensor";
+import { Pseudopotential } from "./include/proto_properties/pseudopotential";
 import { Property } from "./property";
 import { PROPERTIES, PROPERTY_TYPES } from "./settings";
 
@@ -51,6 +52,8 @@ export const PROPERTY_CLASS_MAP = {
     [PROPERTIES.jupyter_nb_endpoint]: null,
     [PROPERTIES.average_potential_profile]: AveragePotentialProfileProperty,
     [PROPERTIES.valence_band_offset]: null,
+    [PROPERTIES.pseudopotential]: Pseudopotential,
+    [PROPERTIES.boundary_conditions]: null,
 };
 
 export const PROPERTY_BRANCH_MAP = {

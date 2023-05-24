@@ -1,6 +1,6 @@
 /* eslint-disable class-methods-use-this */
 /* eslint-disable max-classes-per-file */
-import _ from "lodash";
+import lodash from "lodash";
 import { mix } from "mixwith";
 
 import { Property } from "../../property";
@@ -22,11 +22,11 @@ export class PotentialProfileConfig extends TwoDimensionalHighChartConfigMixin {
     }
 
     get series() {
-        return _.map(this.yDataSeries, (item, index) => {
+        return lodash.map(this.yDataSeries, (item, index) => {
             return {
                 animation: false,
                 name: NAMES[index],
-                data: _.zip(this.xDataArray, item),
+                data: lodash.zip(this.xDataArray, item),
             };
         });
     }

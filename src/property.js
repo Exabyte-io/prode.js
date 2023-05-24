@@ -39,6 +39,10 @@ export class Property extends NamedInMemoryEntity {
         return this.prop("schemaVersion");
     }
 
+    get source() {
+        return this.prop("source");
+    }
+
     get sourceInfo() {
         return this.prop("source.info") || {};
     }
@@ -51,6 +55,7 @@ export class Property extends NamedInMemoryEntity {
         return this.prop("group");
     }
 
+    // same as element of PROPERTIES
     get slug() {
         return this.prop("slug");
     }
@@ -153,7 +158,7 @@ export class Property extends NamedInMemoryEntity {
 
     /**
      * @summary Adds slug & group property to characteristic. They used for forming column name.
-     * 'group' property will contain model type/subtype. Band gap characteristic is splitted before.
+     * 'group' property will contain model type/subtype. Band gap characteristic is split before.
      * @return {Array}
      */
     toRowValues() {

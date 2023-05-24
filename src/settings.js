@@ -50,4 +50,6 @@ export const PROPERTIES = {
     jupyter_nb_endpoint: "jupyter_notebook_endpoint",
     average_potential_profile: "average_potential_profile",
     valence_band_offset: "valence_band_offset",
+    pseudopotential: "pseudopotential",
+    boundary_conditions: "boundary_conditions",
 };
