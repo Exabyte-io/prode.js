@@ -36,14 +36,14 @@
         "@babel/preset-react": "7.16.7",
         "@babel/register": "^7.16.0",
         "@babel/runtime-corejs3": "7.16.8",
-        "lodash": "^4.17.21",
         "mathjs": "^3.9.0",
-        "mixwith": "^0.1.1",
-        "moment": "^2.17.1",
-        "underscore": "^1.13.3",
-        "underscore.string": "^3.3.4"
+        "mixwith": "^0.1.1"
     },
     "devDependencies": {
+        "lodash": "^4.17.21",
+        "moment": "^2.17.1",
+        "underscore": "^1.13.3",
+        "underscore.string": "^3.3.4",
         "@exabyte-io/code.js": "2022.7.28-1",
         "@exabyte-io/eslint-config": "^2022.11.17-0",
         "@exabyte-io/made.js": "2022.6.15-0",
@@ -66,7 +66,11 @@
     },
     "peerDependencies": {
         "@exabyte-io/code.js": "*",
-        "@exabyte-io/made.js": "*"
+        "@exabyte-io/made.js": "*",
+        "moment": "*",
+        "underscore": "*",
+        "underscore.string": "*",
+        "lodash": "*"
     },
     "engines": {
         "node": ">=12.0.0"
