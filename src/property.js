@@ -126,6 +126,10 @@ export class Property extends NamedInMemoryEntity {
         return false;
     }
 
+    get isRefined() {
+        return Property.refinedPropertyNames.includes(this.name);
+    }
+
     get propertyBranch() {
         const tree = Property.propertyTree;
         // safely return empty object in case the tree does not contain the name key
