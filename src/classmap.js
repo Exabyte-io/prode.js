@@ -1,5 +1,6 @@
 import { ConvergenceElectronicProperty } from "./include/convergence/convergence_electronic";
 import { ConvergenceIonicProperty } from "./include/convergence/convergence_ionic";
+import { Pseudopotential } from "./include/meta_properties/pseudopotential";
 import { AveragePotentialProfileProperty } from "./include/non-scalar/average_potential_profile";
 import { BandGapsProperty } from "./include/non-scalar/band_gaps";
 import { BandStructureProperty } from "./include/non-scalar/band_structure";
@@ -13,7 +14,6 @@ import { StructureProperty } from "./include/non-scalar/structure";
 import { WorkflowProperty } from "./include/non-scalar/workflow";
 import { ObjectProperty } from "./include/primitive/object";
 import { TensorProperty } from "./include/primitive/tensor";
-import { Pseudopotential } from "./include/proto_properties/pseudopotential";
 import { Property } from "./property";
 import { PROPERTIES, PROPERTY_TYPES } from "./settings";
 
