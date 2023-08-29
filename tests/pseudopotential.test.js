@@ -145,4 +145,13 @@ describe("Pseudopotentials", () => {
         expect(filtered[0].apps[0]).to.be.equal(filterObj2.appName);
         expect(filtered[0].element).to.be.equal(filterObj2.elements[0]);
     });
+    it("are filtered by compatible functionals", () => {
+        const exchangeCorrelation = { approximation: "hybrid", functional: "hse06" };
+        const sortedPseudos = Pseudopotential.filterRawDataByExchangeCorrelation(
+            pseudos,
+            exchangeCorrelation,
+        );
+        expect(sortedPseudos).to.have.length(3); // there are 3 PBE pseudos above
+        expect(sortedPseudos.map((p) => p.exchangeCorrelation.functional)).to.include("pbe");
+    });
 });
