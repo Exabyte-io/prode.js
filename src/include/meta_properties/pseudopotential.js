@@ -3,6 +3,10 @@ import _ from "underscore";
 import { Property } from "../../property";
 
 export class Pseudopotential extends Property {
+    static compatibleExchangeCorrelation = {
+        hse06: ["pbe", "hse06"],
+    };
+
     get path() {
         return this.prop("path");
     }
@@ -68,11 +72,17 @@ export class Pseudopotential extends Property {
      * @param {String} exchangeCorrelation.functional
      */
     static filterRawDataByExchangeCorrelation(rawData, exchangeCorrelation) {
-        return rawData.filter((el) =>
-            Object.keys(exchangeCorrelation).reduce(
-                (mem, key) => mem && el.exchangeCorrelation[key] === exchangeCorrelation[key],
-            ),
+        const { functional } = exchangeCorrelation;
+        const isCompatibleWithOther = Object.keys(this.compatibleExchangeCorrelation).includes(
+            functional,
         );
+        return rawData.filter((item) => {
+            return isCompatibleWithOther
+                ? this.compatibleExchangeCorrelation[functional].includes(
+                      item.exchangeCorrelation?.functional,
+                  )
+                : functional === item.exchangeCorrelation?.functional;
+        });
     }
 
     // filter unique (assuming that path is always unique)
