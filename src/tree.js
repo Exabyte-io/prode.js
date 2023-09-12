@@ -132,4 +132,7 @@ export default {
     [PROPERTIES.boundary_conditions]: {
         type: PROPERTY_TYPES.non_scalar,
     },
+    [PROPERTIES.dielectric_tensor]: {
+        type: PROPERTY_TYPES.non_scalar,
+    },
 };

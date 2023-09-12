@@ -52,4 +52,5 @@ export const PROPERTIES = {
     valence_band_offset: "valence_band_offset",
     pseudopotential: "pseudopotential",
     boundary_conditions: "boundary_conditions",
+    dielectric_tensor: "dielectric_tensor",
 };
