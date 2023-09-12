@@ -78,21 +78,18 @@ export class DielectricTensorProperty extends Property {
     getAllChartConfigs() {
         const complementaryPairs = this.getComplementaryPairs();
 
-        return complementaryPairs.flatMap((pair) => {
+        return complementaryPairs.map((pair) => {
             const xDataArray = pair[0].frequencies;
-            const components_first = this.rowMajorToColumnMajor(pair[0].components);
-            const components_second = this.rowMajorToColumnMajor(pair[1].components);
-            return components_first.map((epsilon, index) => {
-                return {
-                    subtitle: `${this.subtitle} - ${"xyz"[index]}`,
-                    xAxisTitle: this.xAxisTitle,
-                    yAxisTitle: this.yAxisTitle,
-                    yAxisType: "linear",
-                    xDataArray,
-                    yDataSeries: [epsilon, components_second[index]],
-                    legend: pair.map((p) => p.part),
-                };
-            });
+            const spinChannel = pair[0].spin ? ` - spin(${pair[0].spin})` : "";
+            return {
+                subtitle: `${this.subtitle}${spinChannel}`,
+                xAxisTitle: this.xAxisTitle,
+                yAxisTitle: this.yAxisTitle,
+                yAxisType: "linear",
+                xDataArray,
+                yDataSeries: pair.flatMap((p) => this.rowMajorToColumnMajor(p.components)),
+                legend: pair.flatMap((p) => [..."xyz"].map((char) => `eps_${char} (${p.part})`)),
+            };
         });
     }
 }
@@ -136,17 +133,17 @@ export class DielectricTensorConfig extends TwoDimensionalHighChartConfigMixin {
     get overrideConfig() {
         return {
             ...super.overrideConfig,
-            // colors: [
-            //     "#7cb5ec",
-            //     "#90ed7d",
-            //     "#f7a35c",
-            //     "#8085e9",
-            //     "#f15c80",
-            //     "#e4d354",
-            //     "#2b908f",
-            //     "#f45b5b",
-            //     "#91e8e1",
-            // ],
+            colors: [
+                "#7cb5ec",
+                "#90ed7d",
+                "#f7a35c",
+                "#8085e9",
+                "#f15c80",
+                "#e4d354",
+                "#2b908f",
+                "#f45b5b",
+                "#91e8e1",
+            ],
             credits: {
                 enabled: false,
             },
