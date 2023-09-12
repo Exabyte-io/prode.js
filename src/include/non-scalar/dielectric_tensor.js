@@ -84,7 +84,7 @@ export class DielectricTensorProperty extends Property {
             const components_second = this.rowMajorToColumnMajor(pair[1].components);
             return components_first.map((epsilon, index) => {
                 return {
-                    subtitle: this.subtitle,
+                    subtitle: `${this.subtitle} - ${"xyz"[index]}`,
                     xAxisTitle: this.xAxisTitle,
                     yAxisTitle: this.yAxisTitle,
                     yAxisType: "linear",
@@ -121,7 +121,7 @@ export class DielectricTensorConfig extends TwoDimensionalHighChartConfigMixin {
         // eslint-disable-next-line func-names
         return function () {
             return (
-                "<b>state:</b> " +
+                "<b>part:</b> " +
                 this.series.name +
                 "<br>" +
                 "<b>frequency:</b> " +
