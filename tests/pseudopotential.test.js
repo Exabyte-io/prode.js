@@ -121,15 +121,15 @@ describe("Pseudopotentials", () => {
         elements: ["Pb"],
     };
 
-    it("are sorted by default pattern: '/gbrv/'", () => {
+    it("can be sorted by default pattern: '/gbrv/'", () => {
         const sortedPseudos = Pseudopotential.sortPseudosByPattern(pseudos);
         expect(sortedPseudos[0].source).to.equal("gbrv");
     });
-    it("are sorted by default path for VASP version 5.2", () => {
+    it("can be sorted by default path for VASP version 5.2", () => {
         const sortedPseudos = Pseudopotential.sortByPathVASP(pseudos);
         expect(sortedPseudos[0].source).to.equal("vasp");
     });
-    it("are filtered by exchangeCorrelation and searchText at once", () => {
+    it("can be filtered by exchangeCorrelation and searchText at once", () => {
         const { functional: func, approximation: appr } = filterObj.exchangeCorrelation;
         const filtered = Pseudopotential.applyPseudoFilters(pseudos, filterObj);
         // may need to be adjusted when new pseudos array is modified!
@@ -138,14 +138,14 @@ describe("Pseudopotentials", () => {
         expect(filtered[0].exchangeCorrelation).to.have.property("approximation", appr);
         expect(filtered[0].source).to.be.equal(filterObj.searchText);
     });
-    it("are filtered by appName and elements at once", () => {
+    it("can be filtered by appName and elements at once", () => {
         const filtered = Pseudopotential.applyPseudoFilters(pseudos, filterObj2);
         // may need to be adjusted when new pseudos array is modified!
         expect(filtered).to.have.lengthOf(1);
         expect(filtered[0].apps[0]).to.be.equal(filterObj2.appName);
         expect(filtered[0].element).to.be.equal(filterObj2.elements[0]);
     });
-    it("are filtered by compatible functionals", () => {
+    it("can be filtered by compatible functionals", () => {
         const exchangeCorrelation = { approximation: "hybrid", functional: "hse06" };
         const sortedPseudos = Pseudopotential.filterRawDataByExchangeCorrelation(
             pseudos,
