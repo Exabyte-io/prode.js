@@ -154,4 +154,15 @@ describe("Pseudopotentials", () => {
         expect(sortedPseudos).to.have.length(3); // there are 3 PBE pseudos above
         expect(sortedPseudos.map((p) => p.exchangeCorrelation.functional)).to.include("pbe");
     });
+    it("can be filtered by pseudopotential type", () => {
+        const filtered = Pseudopotential.filterByType(pseudos, "paw");
+        const filteredWithObject = Pseudopotential.applyPseudoFilters(pseudos, { type: "paw" });
+        // may need to be adjusted when new pseudos array is modified!
+        expect(filtered).to.have.lengthOf(1);
+        expect(filtered[0].type).to.be.equal("paw");
+        expect(filtered[0].path).to.be.equal(
+            "/export/share/pseudo/si/gga/pbe/vasp/5.2/paw/default/POTCAR",
+        );
+        expect(filteredWithObject).to.have.deep.members(filtered);
+    });
 });
