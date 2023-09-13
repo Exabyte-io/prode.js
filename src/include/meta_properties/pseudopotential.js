@@ -132,6 +132,8 @@ export class Pseudopotential extends Property {
                 filteredPseudos = this.filterByAppName(filteredPseudos, fValue);
             } else if (fKey === "elements" && fValue) {
                 filteredPseudos = this.filterByElements(filteredPseudos, fValue);
+            } else if (fKey === "type" && fValue) {
+                filteredPseudos = this.filterByType(filteredPseudos, fValue);
             }
         });
         return filteredPseudos;
@@ -160,5 +162,14 @@ export class Pseudopotential extends Property {
             }
             return 0;
         });
+    }
+
+    /**
+     * @param {Pseudopotential[]} pseudos - Pseudopotentials to filter
+     * @param {string} pseudoType - Pseudopotential type (e.g. "us", "nc", ...)
+     * @returns {Pseudopotential[]}
+     */
+    static filterByType(pseudos, pseudoType) {
+        return pseudos.filter((pseudo) => pseudo.type.includes(pseudoType));
     }
 }
