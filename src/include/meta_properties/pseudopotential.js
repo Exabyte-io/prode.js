@@ -170,6 +170,7 @@ export class Pseudopotential extends Property {
      * @returns {Pseudopotential[]}
      */
     static filterByType(pseudos, pseudoType) {
+        if (pseudoType === undefined || pseudoType === "any") return pseudos;
         return pseudos.filter((pseudo) => pseudo.type.includes(pseudoType));
     }
 }
