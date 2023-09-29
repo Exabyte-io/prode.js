@@ -95,16 +95,19 @@ export class Pseudopotential extends Property {
         return Pseudopotential.filterUnique(this.filterByAppName(array, appName));
     }
 
-    static filterRawDataByPath(rawData, pseudoPath = "") {
+    static filterRawDataByPath(pseudos, pseudoPath = "") {
+        if (!pseudoPath) return pseudos;
         const regexp = new RegExp(pseudoPath);
-        return rawData.filter((el) => el.path.match(regexp));
+        return pseudos.filter((el) => el.path.match(regexp));
     }
 
     static filterByAppName(pseudos, appName) {
+        if (!appName) return pseudos;
         return pseudos.filter((pseudo) => pseudo.apps.includes(appName));
     }
 
     static filterByElements(pseudos, elements) {
+        if (!elements || elements.length === 0) return pseudos;
         return pseudos.filter((pseudo) => elements.includes(pseudo.element));
     }
 
