@@ -65,18 +65,26 @@ export class Pseudopotential extends Property {
     }
 
     /**
-     * @summary Exclusive filter of raw data by all fields of the passed object
-     * @param {Array} rawData
+     * @summary Exclusive filter of raw pseudopotential array by approximation and functional
+     * @param {Pseudopotential[]} pseudos
      * @param {Object} exchangeCorrelation
      * @param {String} exchangeCorrelation.approximation
      * @param {String} exchangeCorrelation.functional
      */
-    static filterRawDataByExchangeCorrelation(rawData, exchangeCorrelation) {
-        const { functional } = exchangeCorrelation;
+    static filterRawDataByExchangeCorrelation(pseudos, exchangeCorrelation) {
+        const { approximation, functional } = exchangeCorrelation;
+        if (!functional && !approximation) return pseudos;
+
+        if (!functional) {
+            return pseudos.filter(
+                (item) => item.exchangeCorrelation?.approximation === approximation,
+            );
+        }
+
         const isCompatibleWithOther = Object.keys(this.compatibleExchangeCorrelation).includes(
             functional,
         );
-        return rawData.filter((item) => {
+        return pseudos.filter((item) => {
             return isCompatibleWithOther
                 ? this.compatibleExchangeCorrelation[functional].includes(
                       item.exchangeCorrelation?.functional,
