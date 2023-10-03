@@ -154,6 +154,23 @@ describe("Pseudopotentials", () => {
         expect(sortedPseudos).to.have.length(3); // there are 3 PBE pseudos above
         expect(sortedPseudos.map((p) => p.exchangeCorrelation.functional)).to.include("pbe");
     });
+    it("can be filtered by exchange-correlation approximation only", () => {
+        const exchangeCorrelation = { approximation: "lda", functional: "" };
+        const sortedPseudos = Pseudopotential.filterRawDataByExchangeCorrelation(
+            pseudos,
+            exchangeCorrelation,
+        );
+        expect(sortedPseudos).to.have.length(1); // there is 1 LDA pseudo above
+        expect(sortedPseudos.map((p) => p.exchangeCorrelation.functional)).to.include("pz");
+    });
+    it("should return original array if approximation and functional are falsy", () => {
+        const exchangeCorrelation = { approximation: "", functional: "" };
+        const sortedPseudos = Pseudopotential.filterRawDataByExchangeCorrelation(
+            pseudos,
+            exchangeCorrelation,
+        );
+        expect(sortedPseudos).to.have.length(PSEUDO_CONFIGS.length); // there is 1 LDA pseudo above
+    });
     it("can be filtered by pseudopotential type", () => {
         const filtered = Pseudopotential.filterByType(pseudos, "paw");
         const filteredWithObject = Pseudopotential.applyPseudoFilters(pseudos, { type: "paw" });
