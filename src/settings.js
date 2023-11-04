@@ -53,4 +53,5 @@ export const PROPERTIES = {
     pseudopotential: "pseudopotential",
     boundary_conditions: "boundary_conditions",
     dielectric_tensor: "dielectric_tensor",
+    hubbard_parameters: "hubbard_parameters",
 };
