@@ -135,4 +135,7 @@ export default {
     [PROPERTIES.dielectric_tensor]: {
         type: PROPERTY_TYPES.non_scalar,
     },
+    [PROPERTIES.hubbard_u]: {
+        type: PROPERTY_TYPES.non_scalar,
+    },
 };
