@@ -138,4 +138,10 @@ export default {
     [PROPERTIES.hubbard_u]: {
         type: PROPERTY_TYPES.non_scalar,
     },
+    [PROPERTIES.hubbard_v_nn]: {
+        type: PROPERTY_TYPES.non_scalar,
+    },
+    [PROPERTIES.hubbard_v]: {
+        type: PROPERTY_TYPES.non_scalar,
+    },
 };
