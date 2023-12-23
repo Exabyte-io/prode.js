@@ -1,7 +1,1 @@
-import { Property } from "../../property";
-
-export class HubbardVNNProperty extends Property {
-    get values() {
-        return this.prop("values");
-    }
-}
+export { PropertyWithValues as HubbardVNNProperty } from "../../propery_with_values";
