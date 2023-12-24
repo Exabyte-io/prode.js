@@ -8,6 +8,8 @@ import { ChargeDensityProfileProperty } from "./include/non-scalar/charge_densit
 import { DensityOfStatesProperty } from "./include/non-scalar/density_of_states";
 import { DielectricTensorProperty } from "./include/non-scalar/dielectric_tensor";
 import { HubbardUProperty } from "./include/non-scalar/hubbard_u";
+import { HubbardVProperty } from "./include/non-scalar/hubbard_v";
+import { HubbardVNNProperty } from "./include/non-scalar/hubbard_v_nn";
 import { PhononDispersionsProperty } from "./include/non-scalar/phonon_dispersions";
 import { PhononDOSProperty } from "./include/non-scalar/phonon_dos";
 import { PotentialProfileProperty } from "./include/non-scalar/potential_profile";
@@ -57,7 +59,9 @@ export const PROPERTY_CLASS_MAP = {
     [PROPERTIES.pseudopotential]: Pseudopotential,
     [PROPERTIES.boundary_conditions]: null,
     [PROPERTIES.dielectric_tensor]: DielectricTensorProperty,
-    [PROPERTIES.hubbard_u]: HubbardUProperty
+    [PROPERTIES.hubbard_u]: HubbardUProperty,
+    [PROPERTIES.hubbard_v_nn]: HubbardVNNProperty,
+    [PROPERTIES.hubbard_v]: HubbardVProperty,
 };
 
 export const PROPERTY_BRANCH_MAP = {
