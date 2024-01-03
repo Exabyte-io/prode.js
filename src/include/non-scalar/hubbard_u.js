@@ -1,7 +1,1 @@
-import { Property } from "../../property";
-
-export class HubbardUProperty extends Property {
-    get values() {
-        return this.prop("values");
-    }
-}
+export { PropertyWithValues as HubbardUProperty } from "../../propery_with_values";

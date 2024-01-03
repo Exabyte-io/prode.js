@@ -54,4 +54,6 @@ export const PROPERTIES = {
     boundary_conditions: "boundary_conditions",
     dielectric_tensor: "dielectric_tensor",
     hubbard_u: "hubbard_u",
+    hubbard_v_nn: "hubbard_v_nn",
+    hubbard_v: "hubbard_v",
 };
