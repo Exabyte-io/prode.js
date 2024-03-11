@@ -36,6 +36,7 @@ export const PROPERTY_CLASS_MAP = {
     [PROPERTIES.total_energy_contrib]: null,
     [PROPERTIES.atomic_forces]: null,
     [PROPERTIES.atomic_constraints]: null,
+    [PROPERTIES.atomic_labels]: null,
     [PROPERTIES.stress_tensor]: null,
     [PROPERTIES.dos]: DensityOfStatesProperty,
     [PROPERTIES.band_structure]: BandStructureProperty,

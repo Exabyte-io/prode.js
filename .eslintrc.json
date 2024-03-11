@@ -1,6 +1,6 @@
 {
     "extends": ["@exabyte-io/eslint-config"],
     "globals": {
-        "Highcharts": "readonly",
+        "Highcharts": "readonly"
     }
 }

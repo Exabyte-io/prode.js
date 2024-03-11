@@ -30,6 +30,7 @@ export const PROPERTIES = {
     total_energy_contrib: "total_energy_contributions",
     atomic_forces: "atomic_forces",
     atomic_constraints: "atomic_constraints",
+    atomic_labels: "atomic_labels",
     stress_tensor: "stress_tensor",
     dos: "density_of_states",
     band_structure: "band_structure",

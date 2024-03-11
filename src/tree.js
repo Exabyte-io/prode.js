@@ -51,6 +51,9 @@ export default {
     [PROPERTIES.atomic_constraints]: {
         type: PROPERTY_TYPES.non_scalar,
     },
+    [PROPERTIES.atomic_labels]: {
+        type: PROPERTY_TYPES.scalar,
+    },
     [PROPERTIES.stress_tensor]: {
         type: PROPERTY_TYPES.tensor,
     },
