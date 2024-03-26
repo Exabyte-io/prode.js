@@ -1,4 +1,4 @@
-import { deepClone, flattenObject } from "@exabyte-io/code.js/dist/utils";
+import { deepClone, flattenObject } from "@mat3ra/code/dist/js/utils";
 
 import { Property } from "../../property";
 

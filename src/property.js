@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
-import { NamedInMemoryEntity } from "@exabyte-io/code.js/dist/entity";
-import { flattenObject } from "@exabyte-io/code.js/dist/utils";
+import { NamedInMemoryEntity } from "@mat3ra/code/dist/js/entity";
+import { flattenObject } from "@mat3ra/code/dist/js/utils";
 import lodash from "lodash";
 import _ from "underscore";
 

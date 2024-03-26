@@ -1,7 +1,7 @@
 /* eslint-disable class-methods-use-this */
 // eslint-disable-next-line max-classes-per-file
-import { math as codeJSMath } from "@exabyte-io/code.js/dist/math";
-import { deepClone } from "@exabyte-io/code.js/dist/utils";
+import { math as codeJSMath } from "@mat3ra/code/dist/js/math";
+import { deepClone } from "@mat3ra/code/dist/js/utils";
 import lodash from "lodash";
 import { mix } from "mixwith";
 
