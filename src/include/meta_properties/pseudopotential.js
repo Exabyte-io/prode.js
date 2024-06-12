@@ -65,18 +65,26 @@ export class Pseudopotential extends Property {
     }
 
     /**
-     * @summary Exclusive filter of raw data by all fields of the passed object
-     * @param {Array} rawData
+     * @summary Exclusive filter of raw pseudopotential array by approximation and functional
+     * @param {Pseudopotential[]} pseudos
      * @param {Object} exchangeCorrelation
      * @param {String} exchangeCorrelation.approximation
      * @param {String} exchangeCorrelation.functional
      */
-    static filterRawDataByExchangeCorrelation(rawData, exchangeCorrelation) {
-        const { functional } = exchangeCorrelation;
+    static filterRawDataByExchangeCorrelation(pseudos, exchangeCorrelation) {
+        const { approximation, functional } = exchangeCorrelation;
+        if (!functional && !approximation) return pseudos;
+
+        if (!functional) {
+            return pseudos.filter(
+                (item) => item.exchangeCorrelation?.approximation === approximation,
+            );
+        }
+
         const isCompatibleWithOther = Object.keys(this.compatibleExchangeCorrelation).includes(
             functional,
         );
-        return rawData.filter((item) => {
+        return pseudos.filter((item) => {
             return isCompatibleWithOther
                 ? this.compatibleExchangeCorrelation[functional].includes(
                       item.exchangeCorrelation?.functional,
@@ -95,16 +103,19 @@ export class Pseudopotential extends Property {
         return Pseudopotential.filterUnique(this.filterByAppName(array, appName));
     }
 
-    static filterRawDataByPath(rawData, pseudoPath = "") {
+    static filterRawDataByPath(pseudos, pseudoPath = "") {
+        if (!pseudoPath) return pseudos;
         const regexp = new RegExp(pseudoPath);
-        return rawData.filter((el) => el.path.match(regexp));
+        return pseudos.filter((el) => el.path.match(regexp));
     }
 
     static filterByAppName(pseudos, appName) {
+        if (!appName) return pseudos;
         return pseudos.filter((pseudo) => pseudo.apps.includes(appName));
     }
 
     static filterByElements(pseudos, elements) {
+        if (!elements || elements.length === 0) return pseudos;
         return pseudos.filter((pseudo) => elements.includes(pseudo.element));
     }
 
