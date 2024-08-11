@@ -152,7 +152,7 @@ export class BandStructureConfig extends HighChartsConfig {
                 "<b>" +
                 yAxisName +
                 ": </b>  " +
-                this.y.toFixed(4)
+                this.y.toFixed(_POINT_COORDINATES_PRECISION_)
             );
         };
     }
