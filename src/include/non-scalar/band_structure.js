@@ -110,7 +110,7 @@ export class BandStructureConfig extends HighChartsConfig {
             return {
                 data: lodash.zip(this.pointsDistanceArray, item),
                 name: spin,
-                color: spin === "up" ? "#3677d9" : "#36c9d9",
+                color: spin === "up" ? "#3677d9" : "#ff7f0e",
                 animation: false,
             };
         });
