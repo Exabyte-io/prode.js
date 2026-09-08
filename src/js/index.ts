@@ -23,6 +23,7 @@ export { default as ChargeDensityProfileProperty } from "./properties/non-scalar
 export { default as PotentialProfileProperty } from "./properties/non-scalar/PotentialProfileProperty";
 export { default as WavefunctionAmplitudeProperty } from "./properties/non-scalar/WavefunctionAmplitudeProperty";
 export { default as ReactionEnergyProfileProperty } from "./properties/non-scalar/ReactionEnergyProfileProperty";
+export { default as HysteresisLoopProperty } from "./properties/non-scalar/HysteresisLoopProperty";
 export { protoPropertyHolderMixin } from "./holders/mixins/ProtoPropertyHolderMixin";
 export { propertyHolderMixin } from "./holders/mixins/PropertyHolderMixin";
 export { metaPropertyHolderMixin } from "./holders/mixins/MetaPropertyHolderMixin";

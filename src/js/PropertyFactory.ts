@@ -21,6 +21,7 @@ import FinalStructureProperty from "./properties/non-scalar/FinalStructureProper
 import HubbardUProperty from "./properties/non-scalar/HubbardUProperty";
 import HubbardVNNProperty from "./properties/non-scalar/HubbardVNNProperty";
 import HubbardVProperty from "./properties/non-scalar/HubbardVProperty";
+import HysteresisLoopProperty from "./properties/non-scalar/HysteresisLoopProperty";
 import IsRelaxedProperty from "./properties/non-scalar/IsRelaxedProperty";
 import JupyterNotebookEndpointProperty from "./properties/non-scalar/JupyterNotebookEndpointProperty";
 import PhononDispersionsProperty from "./properties/non-scalar/PhononDispersionsProperty";
@@ -90,6 +91,7 @@ type PropertyClassMap = {
         | Constructor<MagneticMomentsProperty>
         | Constructor<ReactionEnergyBarrierProperty>
         | Constructor<ReactionEnergyProfileProperty>
+        | Constructor<HysteresisLoopProperty>
         | Constructor<PotentialProfileProperty>
         | Constructor<WavefunctionAmplitudeProperty>
         | Constructor<ChargeDensityProfileProperty>
@@ -145,6 +147,7 @@ const PROPERTY_CLASS_MAP: PropertyClassMap = {
     [MagneticMomentsProperty.propertyName]: MagneticMomentsProperty,
     [ReactionEnergyBarrierProperty.propertyName]: ReactionEnergyBarrierProperty,
     [ReactionEnergyProfileProperty.propertyName]: ReactionEnergyProfileProperty,
+    [HysteresisLoopProperty.propertyName]: HysteresisLoopProperty,
     [PotentialProfileProperty.propertyName]: PotentialProfileProperty,
     [WavefunctionAmplitudeProperty.propertyName]: WavefunctionAmplitudeProperty,
     [ChargeDensityProfileProperty.propertyName]: ChargeDensityProfileProperty,

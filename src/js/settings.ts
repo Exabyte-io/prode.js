@@ -46,6 +46,7 @@ export enum PropertyName {
     magnetic_moments = "magnetic_moments",
     reaction_energy_barrier = "reaction_energy_barrier",
     reaction_energy_profile = "reaction_energy_profile",
+    hysteresis_loop = "hysteresis_loop",
     potential_profile = "potential_profile",
     wavefunction_amplitude = "wavefunction_amplitude",
     charge_density_profile = "charge_density_profile",
