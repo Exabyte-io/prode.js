@@ -59,6 +59,8 @@ const OUTPUT_PATHS = {
         "src/js/generated/PotentialProfilePropertySchemaMixin.ts",
     "properties-directory/non-scalar/reaction-energy-profile":
         "src/js/generated/ReactionEnergyProfilePropertySchemaMixin.ts",
+    "properties-directory/non-scalar/hysteresis-loop":
+        "src/js/generated/HysteresisLoopPropertySchemaMixin.ts",
     "properties-directory/workflow/convergence/ionic":
         "src/js/generated/ConvergenceIonicPropertySchemaMixin.ts",
     "properties-directory/workflow/convergence/electronic":
